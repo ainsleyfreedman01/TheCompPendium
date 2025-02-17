@@ -1,6 +1,3 @@
-# Ignore the sensitive server.js file
-server.js
-
 # Ignore the encrypted server.js file
 server.js.gpg
 
