@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Styles */
+body {
+    overflow-x: clip;
+}
+
+/* Logo Styles */
+.logo {
+    width: 125px;
+    margin: -10px;
+    position: relative;
+    left: 10px;
+}
+
+/* Main Content Styles */
+.main-content {
+    margin-top: 136px !important;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #add8e6 !important;
+    position: fixed !important;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-toggler {
+    position: relative;
+    border: none;
+    background: none;
+    display: block !important;
+    right: 1rem;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar-collapse {
+    display: none !important;
+}
+
+.navbar-icon {
+    position: relative;
+    width: 30px;
+    height: 20px;
+}
+
+.navbar-icon::before,
+.navbar-icon::after,
+.navbar-icon div {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #333;
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.navbar-icon::before {
+    top: 0;
+}
+
+.navbar-icon div {
+    top: 8px;
+}
+
+.navbar-icon::after {
+    bottom: 0;
+}
+
+.navbar-icon.open::before {
+    transform: rotate(45deg);
+    top: 8px;
+}
+
+.navbar-icon.open::after {
+    transform: rotate(-45deg);
+    bottom: 8px;
+}
+
+.navbar-icon.open div {
+    opacity: 0;
+}
+
+/* Sidebar Styles */
+.offcanvas-collapse {
+    position: fixed !important;
+    top: 136.5px;
+    right: 0;
+    width: 30%;
+    min-width: 150px;
+    max-width: 250px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            #0097b2 0%,
+            #1f7fbf 25%,
+            #2f5f9f 50%,
+            #1f4d7f 75%,
+            #0f3d5f 100%);
+    transform: translateX(101%);
+    transition: transform 0.3s ease;
+    z-index: 1050;
+}
+
+.offcanvas-collapse.open {
+    transform: translateX(0%);
+}
+
+/* Navigation Items */
+.nav-item {
+    padding-left: 10px;
+    transition: background-color 0.4s linear;
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+}
+
+.nav-item:hover {
+    background-color: rgb(25, 58, 155) !important;
+}
+
+.nav-link {
+    color: whitesmoke !important;
+    font-weight: 500;
+    font-family: "Open Sans";
+    transition: color 0.1s linear;
+    font-size: clamp(20px, 1.2vw + 1rem, 32px);
+}
+
+.nav-item.active a {
+    color: rgb(254, 254, 125) !important;
+}
+
+/* Jumbotron Styles */
+.jumbotron-container {
+    background-color: #1b446dbc;
+}
+
+.jumbotron-header {
+    font-family: "Open Sans";
+    text-decoration: underline;
+    text-decoration-thickness: 3.5px;
+    text-decoration-color: white;
+    font-weight: 350 !important;
+}
+
+.jumbotron-text {
+    font-family: "Open Sans";
+    padding-bottom: 10px;
+    font-size: 2vw !important;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 6.5vw !important;
+    text-decoration: underline !important;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #add8e6 !important;
+    padding: 25px 0 !important;
+    display: flex !important;
+    margin-top: 25%;
+    font-size: clamp(11px, 2vw, 32px);
+    bottom: 0;
+    width: 100%;
+    transition: transform 0.5s ease, opacity 0.5s ease-out;
+    z-index: 1000;
+}
+
+footer p {
+    margin-left: 20px;
+    margin-top: 15px;
+    font-weight: 350;
+}
+
+footer ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto !important;
+    align-items: center;
+}
+
+.link-container {
+    margin-top: 5px;
+    margin-left: auto;
+    padding-right: 30px;
+}
+
+footer ul li {
+    margin-left: 20px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #036 !important;
+}
+
+.footer-slide-down {
+    transform: translateY(100%);
+    /* Move the footer down out of view */
+    opacity: 0;
+    /* Fade out the footer */
+    pointer-events: none;
+    /* Prevent interaction when hidden */
+}
+
+.card-container {
+    margin-left: 1px !important;
+    margin-right: 5px !important;
+}
+
+.card-container a {
+    text-decoration: none !important;
+    color: black;
+}
+
+.card-container a:hover {
+    color: black;
+}
+
+.card {
+    background-color: black !important;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    transition: transform 0.3s ease;
+    background-color:aliceblue
+}
+
+.card-body:hover {
+    transform: translate(8.5px, 8.5px);
+}
+
+.card-text {
+    font-size: 26px !important;
+    text-decoration: none !important;
+}
+
+.display-6 {
+    font-size: clamp(10px, 2.5vw, 32px) !important;
+}
+
+@media only screen and (max-width: 765px) {
+    .card-container {
+        justify-content: center;
+        width: 100% !important;
+    }
+}

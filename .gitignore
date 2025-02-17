@@ -1,0 +1,11 @@
+# Ignore the sensitive server.js file
+server.js
+
+# Ignore the encrypted server.js file
+server.js.gpg
+
+# Ignore .env file for environment variables
+.env
+
+# Ignore the public key file (if necessary)
+public-key.asc

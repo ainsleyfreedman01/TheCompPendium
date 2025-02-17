@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="/images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="index.html"><img class="logo" src="../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../aboutPage/index.html">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../contactPage/index.html">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <!-- Jumbotron -->
+        <div class="jumbotron jumbotron-fluid py-6"
+            style="background: url('../images/jumbotron_img.png') no-repeat; background-size: cover; background-position: center;">
+            <div class="jumbotron-container text-center">
+                <h1 class="display-4 text-white jumbotron-header">Welcome to The CompPendium</h1>
+                <p class="text-white display-6">From One Student to Another: Your Blog for All Things
+                    Computer Science</p>
+            </div>
+        </div>
+        
+        <!-- Article Card Gallery -->
+        <div class="card-container row mb-0">
+            <a href="../articles/WhatIs/WhatIs.html">
+                <div class="col col-12 col-md-6 col-4">
+                    <!-- Article 1 -->
+                    <div class="card">
+                        <div class="card-background"></div>
+                        <div class="card-body border border-dark">
+                            <h2 class="card-title">What <em>is</em> computer science, anyway?</h2>
+                            <p class="card-text">This article takes a deep dive into the world of computer science, serving as an introduction for learners.
+                        </div>
+                    </div>
+                </div>
+            </a>
+        
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="text-left">
+            <p>&copy 2024 The CompPendium</p>
+            <div class="link-container">
+                <ul>
+                    <li><a href="../mainPage/index.html">Home</a></li>
+                    <li><a href="../aboutPage/index.html">About Us</a></li>
+                    <li><a href="../contactPage/index.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

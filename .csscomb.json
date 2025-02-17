@@ -1,0 +1,17 @@
+{
+  "always-semicolon": true,
+  "block-indent": "  ",
+  "color-case": "lower",
+  "color-shorthand": true,
+  "consolidate-css-transform": true,
+  "element-case": "lower",
+  "extend-condense": true,
+  "leading-zero": false,
+  "quotes": "single",
+  "sort-order": [
+    "custom-properties",
+    "declarations",
+    "rules",
+    "at-rules"
+  ]
+}

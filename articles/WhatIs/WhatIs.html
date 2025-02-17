@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | What is computer science, anyway?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="../../images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="../../mainPage/index.html"><img class="logo" src="../../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../../mainPage/index.html">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../../aboutPage/index.html">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../../contactPage/index.php">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <article>
+        <h1>What <em>is</em> computer science, anyway?</h1>
+        <br>
+        <main>
+            <p>First off, welcome to "The CompPendium!" This is the very first article of this blog, as well as your journey learning computer science with us! As you probably read from the title and description of this article, what even <em>is</em> computer science?</p>
+            <p>Of course, we could start with an obvious definition: computer science is <strong>"the science of computers."</strong> Okay, that might be a little TOO obvious.</p> 
+            <p>The given definition on Google gets a little more specific:</strong></p>
+            <img src="./article1_images/google_definition.png">
+            <p>Let's break this definition down some more.</p>
+            <p>The first part mentioned is <strong>"the study of the principles."</strong></p>
+
+        </main>
+    </article>
+
+
+    <!-- Footer -->
+    <footer class="text-left">
+        <p>&copy 2024 The CompPendium</p>
+        <div class="link-container">
+            <ul>
+                <li><a href="../../mainPage/index.html">Home</a></li>
+                <li><a href="../../aboutPage/index.html">About Us</a></li>
+                <li><a href="../../contactPage/index.php">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+    </script>
+</body>
+
+</html>

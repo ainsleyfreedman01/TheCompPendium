@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | Contact Us</title>
+    <link rel="stylesheet" href="/contactPage/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="/images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #successMessage {
+            display: none;
+            font-size: 16px;
+            font-weight: bold;
+            color: #004d00;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="../mainPage/index.html"><img class="logo" src="../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu" data-bs-scroll="false">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../mainPage/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../aboutPage/index.html">About Us</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="../contactPage/index.html">Contact Us<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid py-6"
+        style="background: url('../images/ContactUsBackground.webp') no-repeat; 
+                background-size: cover; background-position: center; box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);">
+        <div class="jumbotron-container text-center">
+            <h1 class="display-4 text-white jumbotron-header">Contact Us</h1>
+            <p class="text-white jumbotron-text display-5">Feel free to reach out with any questions, comments, or
+                requests for future posts!</p>
+        </div>
+    </div>
+
+    <div class="feedback-container">
+        <div class="feedback-form">
+            <h2>Send Us Your Feedback</h2>
+            <form id="feedbackForm" action="/send-email" method="POST" enctype="multipart/form-data">
+                <label for="name">Name:</label>
+                <input type="text" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Feedback</button>
+            </form>
+
+            <p id="successMessage">Email sent successfully!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-left">
+        <p>&copy 2024 The CompPendium</p>
+        <div class="link-container">
+            <ul>
+                <li><a href="../mainPage/index.html">Home</a></li>
+                <li><a href="../aboutPage/index.html">About Us</a></li>
+                <li><a href="../contactPage/index.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        $('#feedbackForm').on('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var formData = $(this).serialize(); // Serialize form data
+
+            $.ajax({
+                url: '/send-email',
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    // Check if the response contains the success message
+                    if (response.includes('Message has been sent successfully.')) {
+                        // Clear the form fields
+                        $('#feedbackForm')[0].reset();
+
+                        // Display the success message
+                        $('#successMessage').show();
+                    } else {
+                        // Handle errors or unexpected responses (optional)
+                        console.error('Failed to send email.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Handle errors (optional)
+                    console.error('AJAX error:', status, error);
+                }
+            });
+        });
+
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            // Get the scroll position
+            let scrollPosition = window.scrollY + window.innerHeight;
+
+            // Get the total scrollable height of the page
+            let pageHeight = document.documentElement.scrollHeight;
+
+            // If the user has reached the bottom of the page
+            if (scrollPosition >= pageHeight) {
+                // Lock the scroll position
+                window.scrollTo(0, pageHeight - window.innerHeight);
+            }
+        });
+    </script>
+</body>
+
+</html>
