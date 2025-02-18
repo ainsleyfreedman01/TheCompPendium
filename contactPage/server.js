@@ -7,7 +7,9 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const app = express();
-const port = 4000;
+
+const port = process.env.PORT || 4000;  // Default to 4000 if $PORT is not set
+
 
 // Define the project root path
 const projectRoot = path.resolve(__dirname, '..');  // Going one level up to the project root
@@ -38,7 +40,7 @@ app.post('/send-email', (req, res) => {
         service: 'gmail',
         auth: {
             user: 'ainsleyfreedman01@thecomppendium.com',
-            pass: password, 
+            pass: password,
         },
     });
 
@@ -60,7 +62,6 @@ app.post('/send-email', (req, res) => {
     });
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
