@@ -20,7 +20,7 @@ app.use('/images', express.static(path.join(projectRoot, 'images')));
 app.use('/aboutPage', express.static(path.join(projectRoot, 'aboutPage')));
 app.use('/contactPage', express.static(path.join(projectRoot, 'contactPage')));
 app.use('/mainPage', express.static(path.join(projectRoot, 'mainPage')));
-app.use('/articles', express.static(path.join(projectRoot, 'articles')));
+app.use('/blog-posts', express.static(path.join(projectRoot, 'blog-posts')));
 
 // Middleware to parse POST data
 app.use(express.urlencoded({ extended: true }));
