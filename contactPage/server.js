@@ -56,7 +56,7 @@ app.post('/send-email', (req, res) => {
             console.log(error);
             res.status(500).send('Error sending email');
         } else {
-            console.log('Email sent: ' + info.response);
+            console.log('Email sent:!');
             res.send('Message has been sent successfully.');
         }
     });
