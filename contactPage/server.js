@@ -32,6 +32,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(projectRoot, 'mainPage', 'index.html'));
 });
 
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'aboutPage', 'index.html'));
+});
+
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'contactPage', 'index.html'));
+});
+
 // Send email route
 app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
