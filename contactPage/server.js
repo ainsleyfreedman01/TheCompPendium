@@ -26,6 +26,10 @@ app.use('/blog-posts', express.static(path.join(projectRoot, 'blog-posts')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/robots.txt', (req, res) => {
+    res.sendFile(path.join(projectRoot, 'robots.txt'));
+});
+
 // Default route for the home page (located in mainPage folder)
 app.get('/', (req, res) => {
     // Correct path to mainPage/index.html from project root

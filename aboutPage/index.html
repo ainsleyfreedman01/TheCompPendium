@@ -156,7 +156,7 @@
 
         <!-- Footer -->
         <footer class="text-left">
-            <p>&copy 2024 The CompPendium</p>
+            <p>&copy; <span id="year"></span> The CompPendium</p>
             <div class="link-container">
                 <ul>
                     <li><a href="../mainPage/index.html">Home</a></li>
@@ -188,6 +188,12 @@
                 window.scrollTo(0, pageHeight - window.innerHeight);
             }
         });
+
+        window.addEventListener('load', function () {
+            document.body.style.visibility = 'visible';
+        });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
     </script>
 </body>
 

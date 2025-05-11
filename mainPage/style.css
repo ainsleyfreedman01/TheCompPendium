@@ -9,6 +9,7 @@
 /* General Styles */
 body {
     overflow-x: clip;
+    visibility: hidden;
 }
 
 /* Logo Styles */

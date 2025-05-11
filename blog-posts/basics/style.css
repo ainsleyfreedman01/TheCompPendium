@@ -10,6 +10,7 @@
 /* General Styles */
 body {
     overflow-x: hidden;
+    visibility: hidden;
 }
 
 /* Logo Styles */

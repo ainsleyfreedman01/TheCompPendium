@@ -3,6 +3,7 @@
 
 body {
     overflow-x: hidden !important;
+    visibility: hidden;
 }
 
 .about {

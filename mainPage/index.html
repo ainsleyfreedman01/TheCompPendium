@@ -73,7 +73,7 @@
 
         <!-- Footer -->
         <footer class="text-left">
-            <p>&copy 2024 The CompPendium</p>
+            <p>&copy; <span id="year"></span> The CompPendium</p>
             <div class="link-container">
                 <ul>
                     <li><a href="../mainPage/index.html">Home</a></li>
@@ -90,6 +90,26 @@
                 $('#offcanvasMenu').toggleClass('open');
                 $('.navbar-icon').toggleClass('open');
             });
+        });
+
+        window.addEventListener('scroll', function () {
+            // Get the scroll position
+            let scrollPosition = window.scrollY + window.innerHeight;
+
+            // Get the total scrollable height of the page
+            let pageHeight = document.documentElement.scrollHeight;
+
+            // If the user has reached the bottom of the page
+            if (scrollPosition >= pageHeight) {
+                // Lock the scroll position
+                window.scrollTo(0, pageHeight - window.innerHeight);
+            }
+        });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        window.addEventListener('load', function () {
+            document.body.style.visibility = 'visible';
         });
     </script>
 </body>

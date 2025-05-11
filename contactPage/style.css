@@ -2,6 +2,7 @@
 
 body {
     overflow-x: hidden !important;
+    visibility: hidden;
 }
 
 .no-scroll {
