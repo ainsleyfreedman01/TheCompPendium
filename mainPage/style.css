@@ -243,7 +243,7 @@ footer ul li a {
 
 .card-body {
     transition: transform 0.3s ease;
-    background-color: aliceblue
+    background-color:aliceblue
 }
 
 .card-body:hover {
@@ -287,45 +287,6 @@ footer ul li a {
     .offcanvas-collapse {
         position: fixed !important;
         top: 111px;
-        right: 0;
-        width: 30%;
-        min-width: 150px;
-        max-width: 250px;
-        height: 100%;
-        background: linear-gradient(to bottom,
-                #0097b2 0%,
-                #1f7fbf 25%,
-                #2f5f9f 50%,
-                #1f4d7f 75%,
-                #0f3d5f 100%);
-        transform: translateX(101%);
-    }
-}
-
-@media screen and (max-width: 575px) {
-    .card-container {
-        justify-content: center;
-        width: 100% !important;
-    }
-
-    .card-body:hover {
-        transform: translate(4.5px, 4.5px);
-    }
-
-    .logo {
-        width: 75px;
-        margin: -10px;
-        position: relative;
-        left: 10px;
-    }
-
-    .main-content {
-        margin-top: 87px !important;
-    }
-
-    .offcanvas-collapse {
-        position: fixed !important;
-        top: 87px;
         right: 0;
         width: 30%;
         min-width: 150px;
