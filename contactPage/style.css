@@ -14,7 +14,8 @@ body {
     margin: -10px;
 }
 
-.navbar, footer {
+.navbar,
+footer {
     background-color: #add8e6;
 }
 
@@ -170,6 +171,7 @@ body {
     font-weight: 350 !important;
 
 }
+
 .jumbotron-text {
     font-family: 'Open Sans';
     padding-bottom: 10px;
@@ -216,7 +218,8 @@ footer ul li {
 
 footer ul li a {
     text-decoration: none;
-    color: #003366 !important;;
+    color: #003366 !important;
+    ;
 }
 
 .feedback-container {
@@ -346,3 +349,33 @@ footer ul li a {
         padding: 18px;
     }
 }
+
+@media only screen and (max-width: 765px) {
+        .logo {
+            width: 100px !important;
+            margin: -10px;
+            position: relative;
+            left: 10px;
+        }
+
+        .jumbotron {
+            margin-top: 111px !important;
+        }
+
+        .offcanvas-collapse {
+            position: fixed !important;
+            top: 111px;
+            right: 0;
+            width: 30%;
+            min-width: 150px;
+            max-width: 250px;
+            height: 100%;
+            background: linear-gradient(to bottom,
+                    #0097b2 0%,
+                    #1f7fbf 25%,
+                    #2f5f9f 50%,
+                    #1f4d7f 75%,
+                    #0f3d5f 100%);
+            transform: translateX(101%);
+        }
+    }
