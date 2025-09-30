@@ -175,7 +175,7 @@ footer {
     padding: 25px 0 !important;
     display: flex !important;
     margin-top: 25%;
-    font-size: clamp(11px, 2vw, 32px);
+    font-size: clamp(11px, 2vw, 15px);
     bottom: 0;
     width: 100%;
     transition: transform 0.5s ease, opacity 0.5s ease-out;

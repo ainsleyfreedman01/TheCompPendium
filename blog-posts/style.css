@@ -151,7 +151,7 @@ footer {
     background-color: #add8e6 !important;
     padding: 25px 0 !important;
     display: flex !important;
-    font-size: clamp(11px, 2vw, 32px);
+    font-size: clamp(11px, 2vw, 15px);
 
     bottom: 0;
     width: 100%;

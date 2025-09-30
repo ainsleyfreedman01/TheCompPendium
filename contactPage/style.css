@@ -186,7 +186,7 @@ h1 {
 footer {
     padding: 25px 0 !important;
     display: flex !important;
-    font-size: clamp(11px, 2vw, 32px);
+    font-size: clamp(11px, 2vw, 15px);
     margin-top: 20% !important;
 }
 
