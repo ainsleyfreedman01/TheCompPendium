@@ -464,6 +464,7 @@ footer ul li a:hover {
     .card-container {
         justify-content: center;
         width: 100% !important;
+        padding: 2rem 0.5rem;
     }
 
     .card-body:hover {
@@ -481,20 +482,92 @@ footer ul li a:hover {
         margin-top: 111px !important;
     }
 
+    /* Enhanced Mobile Sidebar */
     .offcanvas-collapse {
         position: fixed !important;
         top: 111px;
         right: 0;
-        width: 30%;
-        min-width: 150px;
-        max-width: 250px;
-        height: 100%;
-        background: linear-gradient(to bottom,
-                #0097b2 0%,
-                #1f7fbf 25%,
-                #2f5f9f 50%,
-                #1f4d7f 75%,
-                #0f3d5f 100%);
+        width: 280px;
+        min-width: 260px;
+        max-width: 300px;
+        height: calc(100% - 111px);
+        background: linear-gradient(135deg, 
+            rgba(59, 130, 246, 0.95) 0%,
+            rgba(99, 102, 241, 0.92) 25%,
+            rgba(139, 92, 246, 0.9) 50%,
+            rgba(168, 85, 247, 0.88) 75%,
+            rgba(192, 38, 211, 0.85) 100%) !important;
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
         transform: translateX(101%);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1050;
+    }
+
+    .offcanvas-collapse::before {
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%,
+            rgba(0, 0, 0, 0.05) 100%);
+    }
+
+    /* Mobile Navigation Items */
+    .nav-item {
+        margin: 0.25rem 0.75rem;
+    }
+
+    .nav-link {
+        font-size: 1rem !important;
+        padding: 0.75rem 1rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Mobile Footer */
+    footer {
+        padding: 1.5rem 0 !important;
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    footer p {
+        margin: 0 !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+    }
+
+    .link-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    footer ul {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        margin: 0 !important;
+    }
+
+    footer ul li a {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.9rem !important;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Mobile Jumbotron */
+    .jumbotron-container {
+        padding: 3rem 1rem !important;
+    }
+
+    .jumbotron-header {
+        font-size: clamp(2rem, 8vw, 3rem) !important;
+    }
+
+    .jumbotron-text {
+        font-size: clamp(1rem, 4vw, 1.25rem) !important;
     }
 }
