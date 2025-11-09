@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | What is computer science, anyway?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="../../images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="/"><img class="logo" src="../../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <article>
+        <h1>AI: Responsible Use and Ethics</h1>
+        <br>
+        <main>
+            <p>Welcome back to <strong>The CompPendium!</strong> Last time, we explored how AI fits into computer
+                science—what it is, how it learns, and where it shows up in our everyday lives. But today, we’re
+                tackling something just as important: <strong>how we use AI responsibly.</strong></p>
+
+            <p>AI is powerful. It can analyze medical images, predict weather patterns, or recommend your next favorite
+                song. But with great power (yes, Spider-Man fans, we’re saying it again) comes great responsibility.
+                Because AI doesn’t just affect computers—it affects <em>people</em>.</p>
+
+            <h5 style="font-weight: 600;">The Human Side of Technology</h5>
+            <p>Let’s start with something simple: AI systems don’t have opinions or emotions. They make decisions based
+                on data—data that comes from <em>us</em>. That means if the data we give them contains patterns of bias,
+                unfairness, or inequality, the AI might accidentally learn and repeat those same patterns.</p>
+
+            <p>For example, imagine training an AI hiring tool using data from a company that’s historically hired more
+                men than women. Even if no one tells the AI to discriminate, it might “learn” that pattern and start
+                favoring male candidates. The result? A digital system that unintentionally continues a very human
+                problem.</p>
+
+            <p>This is why ethics in AI matters. We have to think about the <strong>impact</strong> of our creations—not
+                just what they can do, but what they <em>should</em> do.</p>
+
+            <img src="./article5_images/ai_bias_balance.png" alt="AI ethics scales illustration">
+
+            <h5 style="font-weight: 600;">What Do We Mean by “Bias”?</h5>
+            <p><strong>Bias</strong> in an AI system is a systematic tendency to produce results that are unfairly skewed toward or against certain groups, ideas, or outcomes. Importantly, bias isn’t the AI “having an opinion” – it’s the <em>patterns</em> it learned from the data, from design choices, or from how we evaluate its success. If those patterns reflect historical inequality or incomplete sampling, the model may amplify them.</p>
+            <p>Some common kinds of bias you’ll hear about:</p>
+            <ul>
+                <li><strong>Sampling Bias:</strong> The training data leaves out (or under‑represents) parts of the population. Example: a voice model trained mostly on adult voices performs worse for children.</li>
+                <li><strong>Historical Bias:</strong> Even “accurate” data encodes past unfair patterns (e.g., prior hiring decisions). The model learns yesterday’s inequities and projects them forward.</li>
+                <li><strong>Measurement Bias:</strong> The way features were recorded is inconsistent or noisier for certain groups (poor lighting in images, different devices, dialect differences).</li>
+                <li><strong>Labeling Bias:</strong> Human annotators bring subjective judgments (e.g., what counts as “aggressive” or “professional”).</li>
+                <li><strong>Algorithmic / Model Bias:</strong> The modeling approach or objective (loss function) optimizes overall accuracy but hides performance gaps across subgroups.</li>
+                <li><strong>Evaluation Bias:</strong> We test models on convenient benchmarks that don’t reflect real, diverse use cases.</li>
+            </ul>
+            <p>No single checklist magically “removes” bias. Instead, we build a <strong>continuous mitigation loop</strong> that starts at problem definition and never really ends.</p>
+            <h5 style="font-weight: 600;">How Can We Mitigate Bias?</h5>
+            <ul>
+                <li><strong>Clarify the real-world objective:</strong> Define who the system serves and what a “fair” outcome looks like before collecting data.</li>
+                <li><strong>Diversify data sourcing:</strong> Intentionally include varied demographics, contexts, and edge cases; avoid relying solely on legacy historical sets.</li>
+                <li><strong>Document data lineage:</strong> Use "datasheets" for datasets to record origin, collection method, limitations, and known gaps.</li>
+                <li><strong>Audit and measure fairness:</strong> Evaluate subgroup metrics (precision/recall, false positive rate) and fairness metrics (e.g., demographic parity, equal opportunity). Look for large performance deltas, not just aggregate accuracy.</li>
+                <li><strong>Balance or reweight when appropriate:</strong> Techniques like stratified sampling, oversampling under‑represented classes, or instance weighting can reduce skew.</li>
+                <li><strong>Use model cards:</strong> Summarize intended use, limitations, and known failure modes so downstream users deploy responsibly.</li>
+                <li><strong>Iterate with diverse review:</strong> Bring in perspectives from different backgrounds—domain experts, impacted communities, accessibility advocates—early and regularly.</li>
+                <li><strong>Apply privacy & security best practices:</strong> De‑identify sensitive fields, minimize personally identifiable info, and respect consent—ethical handling builds trust.</li>
+                <li><strong>Stress test & red team:</strong> Actively probe for worst‑case behaviors (adversarial inputs, demographic edge cases) before release.</li>
+                <li><strong>Monitor in production:</strong> Bias can emerge over time; set up dashboards to watch drift, subgroup performance, and feedback signals.</li>
+                <li><strong>Provide user recourse:</strong> Offer clear channels for users to challenge or appeal automated decisions.</li>
+            </ul>
+            <p>Think of bias mitigation as gardening: you don’t weed once and declare victory. You keep observing, pruning, and re‑balancing so the system stays healthy and fair as it grows.</p>
+
+            <h5 style="font-weight: 600;">Privacy and Data Use</h5>
+            <p>Here’s another big one: privacy. Many AI models learn from <strong>massive</strong> amounts of
+                data—sometimes data about real people. That can include photos, writing samples, voice clips, or even
+                medical information. It’s our job as developers and users to make sure this data is collected and used
+                responsibly.</p>
+
+            <p>That means getting consent before using personal information, storing it securely, and removing
+                identifying details whenever possible. Some laws, like the <strong>GDPR</strong> in Europe, already
+                enforce these rules—but as technology grows, so does the need for global standards that protect users
+                everywhere.</p>
+
+            <h5 style="font-weight: 600;">Transparency and Accountability</h5>
+            <p>AI often feels like magic—but it’s really just math. Still, that “magic” can make it easy for people to
+                forget there’s a human behind every system. That’s why transparency is key: people should know when
+                they’re interacting with AI, and they should be able to understand how decisions are made.</p>
+
+            <p>For instance, if an AI denies someone a loan or flags their resume, that person should have the right to
+                know why. This concept is called <strong>algorithmic transparency</strong>. It helps build trust—and it
+                reminds us that AI doesn’t operate in a vacuum. Humans are still responsible for the outcomes.</p>
+
+            <h5 style="font-weight: 600;">AI and Creativity: A Shared Space</h5>
+            <p>AI can create art, music, and even code, which raises another ethical question: <em>who owns the
+                    result?</em> If an AI-generated painting looks like a famous artist’s work, is that fair use or
+                plagiarism? What if a songwriter uses AI to create lyrics—who’s the real “author”?</p>
+
+            <p>There’s no single answer yet, but what’s clear is that AI should be a <strong>partner</strong>, not a
+                replacement. It can inspire creativity, streamline processes, and spark new ideas—but the imagination
+                and intent behind those creations still belong to humans.</p>
+
+            <h5 style="font-weight: 600;">AI for Good</h5>
+            <p>It’s easy to focus on the risks, but there’s also incredible potential for good. AI can help scientists
+                track climate change, improve accessibility tools for people with disabilities, detect misinformation,
+                and even support mental health. When guided responsibly, AI becomes a force that amplifies human
+                strengths instead of replacing them.</p>
+
+            <p>Many organizations now emphasize the idea of <strong>“responsible AI.”</strong> That means building
+                systems that are fair, explainable, transparent, and beneficial to society. In short: technology that
+                makes life better, not harder.</p>
+
+            <h5 style="font-weight: 600;">The Future Is Shared</h5>
+            <p>As AI continues to grow, so does our responsibility to shape its path. Computer scientists, policymakers,
+                artists, educators—everyone has a role to play in deciding how AI is used. Ethics isn’t an afterthought;
+                it’s part of the design process itself.</p>
+
+            <p>So as you keep learning about coding, algorithms, and all the fun stuff that makes computers tick,
+                remember: the best developers don’t just ask, “Can I build this?” They ask, “Should I?”</p>
+
+            <p>Technology doesn’t have morals—but we do. And that’s what makes computer science not just a science, but
+                a human story.</p>
+
+            <p>See you next time on <strong>The CompPendium!</strong></p>
+        </main>
+    </article>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-left">
+        <p>&copy; <span id="year"></span> The CompPendium</p>
+        <div class="link-container">
+            <ul>
+                <li><a href="../../mainPage/index.html">Home</a></li>
+                <li><a href="../../aboutPage/index.html">About Us</a></li>
+                <li><a href="../../contactPage/index.php">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            // Get the scroll position
+            let scrollPosition = window.scrollY + window.innerHeight;
+
+            // Get the total scrollable height of the page
+            let pageHeight = document.documentElement.scrollHeight;
+
+            // If the user has reached the bottom of the page
+            if (scrollPosition >= pageHeight) {
+                // Lock the scroll position
+                window.scrollTo(0, pageHeight - window.innerHeight);
+            }
+        });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        window.addEventListener('load', function () {
+            document.body.style.visibility = 'visible';
+        });
+    </script>
+</body>
+
+</html>
