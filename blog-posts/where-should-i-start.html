@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | There are so many languages...where should I start?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="../../images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="/"><img class="logo" src="../../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <article>
+        <h1>There are so many languages...where should I start?</h1>
+        <br>
+        <main>
+            <p>One of the first questions people ask when they start learning computer science is, “Okay… there are <em>so many</em> programming languages—where do I even begin?” If that’s you, welcome! This article is here to help make that question a little less overwhelming.</p>
+
+            <p>Before we dive into specific languages, let’s think about <em>why</em> there are so many in the first place. Imagine you’re an artist. You wouldn’t paint every masterpiece with just one brush—sometimes you’d use a thin brush for details, a wide one for large strokes, or even sculpt instead of paint! Programming languages are like artistic tools: each one was created to make a certain kind of “art” (or project) easier, faster, or more efficient.</p>
+
+            <h5 style="font-weight: 600;">So… what even <em>is</em> a programming language?</h5>
+            <p>At its core, a programming language is how humans give instructions to a computer. Think of it like teaching your computer to follow a recipe—you’re giving it a list of steps to get from raw ingredients (your data) to a finished dish (your output). Each language has its own “syntax,” or grammar, and some are more beginner-friendly than others.</p>
+
+            <h5 style="font-weight: 600;">The story behind “Hello, World!”</h5>
+            <p>If you’ve ever opened a programming tutorial, chances are the first thing it told you to do was print <code>"Hello, World!"</code>. But where did that come from, and why do we still use it?</p>
+            <p>It all started in the 1970s with a book called <em>The C Programming Language</em> by Brian Kernighan and Dennis Ritchie—the creators of C. In their first example, they showed a simple program that displayed those two friendly words on the screen. It was short, clear, and—most importantly—it worked. The idea caught on and became a worldwide tradition: the digital equivalent of saying, “Hi, I’m here!” to your computer.</p>
+            <p>“Hello, World!” represents the first successful conversation between you and your computer. It’s your way of proving you’ve set everything up correctly, that the code runs, and that you’re officially a programmer now. Every developer remembers their first one—it’s kind of a rite of passage!</p>
+
+            <h5 style="font-weight: 600;">Python — the friendly all-rounder</h5>
+            <p>If programming languages were people, Python would be that super approachable classmate who always helps everyone understand the homework. It’s known for being simple to read and write, making it a great first language for beginners. You can use Python for almost anything—from websites to data analysis to AI.</p>
+
+            <pre class="code-block"><code># Python
+print("Hello, world!")</code></pre>
+            <p><em>What to notice:</em> No extra setup, just one clean, readable line. Python’s simplicity makes it perfect for learning how computers “think.”</p>
+
+            <h5 style="font-weight: 600;">Java — the structured problem-solver</h5>
+            <p>Java is everywhere—from Android apps to enterprise systems—and it teaches you structured, object-oriented thinking. It’s more formal than Python, but that structure helps you stay organized as your projects grow.</p>
+
+            <pre class="code-block"><code>// Java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}</code></pre>
+            <p><em>What to notice:</em> Java programs always start inside a “class” and “method.” It’s a bit wordier, but that structure is powerful for large projects.</p>
+
+            <h5 style="font-weight: 600;">JavaScript — the web wizard</h5>
+            <p>If you love the idea of bringing websites to life—buttons that react, animations that move, pages that update instantly—JavaScript is for you. It runs right in your browser, so you can see your results instantly!</p>
+
+            <pre class="code-block"><code>// JavaScript
+console.log("Hello, world!");</code></pre>
+            <p><em>What to notice:</em> Looks a lot like Java, right? The syntax is similar, but JavaScript is built for interactivity on the web.</p>
+
+                        <h5 style="font-weight: 600;">HTML & CSS — the foundation of the web</h5>
+                        <p>If JavaScript adds interactivity, then HTML and CSS are the bedrock of web pages themselves. HTML (HyperText Markup Language) defines the structure and meaning of your content, while CSS (Cascading Style Sheets) controls how that content looks—layout, colors, spacing, and typography. Together, they’re the fastest way to start creating things you can see and share in a browser.</p>
+
+                        <pre class="code-block"><code><!-- HTML -->
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+        &lt;title&gt;Hello&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello, world!&lt;/h1&gt;
+        &lt;p&gt;Welcome to the web.&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                        <pre class="code-block"><code>/* CSS */
+h1 {
+    color: #2563eb; /* a friendly blue */
+}
+
+p {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}</code></pre>
+                        <p><em>What to notice:</em> HTML gives the page a semantic structure (headings, paragraphs), while CSS styles those elements. You can start with just a single HTML file, add a &lt;style&gt; block or a separate .css file, and see changes instantly in your browser.</p>
+
+                                    <h5 style="font-weight: 600;">A quick interactive web example</h5>
+                                    <p>Below is a tiny self‑contained demo showing how HTML defines elements, CSS styles them, and JavaScript adds behavior. Try entering a name, toggling the theme, or incrementing the counter.</p>
+
+                                    <div class="web-demo" id="mini-web-demo">
+                                            <div class="web-demo-preview" id="demoPreview">
+                                                    <h3 id="demoHeading">Hello, web explorer!</h3>
+                                                    <p id="demoMessage">Type your name below and press <strong>Update</strong>.</p>
+                                                    <div class="web-demo-controls" style="margin-top:0.75rem;">
+                                                            <input type="text" id="demoName" placeholder="Your name..." aria-label="Your name">
+                                                            <button type="button" id="demoUpdateBtn">Update</button>
+                                                            <button type="button" id="demoThemeBtn">Toggle Theme</button>
+                                                            <button type="button" id="demoCountBtn">Count: <span id="demoCount">0</span></button>
+                                                    </div>
+                                            </div>
+                                            <pre class="code-block"><code><!-- HTML (structure) -->
+            &lt;div class="web-demo-preview"&gt;
+                &lt;h3&gt;Hello, web explorer!&lt;/h3&gt;
+                &lt;p&gt;Type your name below and press Update.&lt;/p&gt;
+                &lt;input type="text" placeholder="Your name..." /&gt;
+                &lt;button&gt;Update&lt;/button&gt;
+                &lt;button&gt;Toggle Theme&lt;/button&gt;
+            &lt;/div&gt;</code></pre>
+                                            <pre class="code-block"><code>/* CSS (presentation) */
+            .web-demo-preview {
+                background: white;
+                border: 1px solid #e5e7eb;
+                border-radius: 14px;
+                padding: 1rem;
+            }
+            .web-demo-preview.dark { background:#0b1220; color:#e5e7eb; }</code></pre>
+                                            <pre class="code-block"><code>// JavaScript (behavior)
+            const nameInput = document.getElementById('demoName');
+            const heading = document.getElementById('demoHeading');
+            document.getElementById('demoUpdateBtn').addEventListener('click', () => {
+                const name = nameInput.value.trim();
+                heading.textContent = name ? `Hello, ${name}!` : 'Hello, web explorer!';
+            });</code></pre>
+                                    </div>
+                                    <p><em>What to notice:</em> Structure (HTML), appearance (CSS), and interaction (JavaScript) are separate—but they work together to create an experience.</p>
+
+            <h5 style="font-weight: 600;">C — the foundational powerhouse</h5>
+            <p>C is one of the oldest and most influential programming languages. Many modern languages—Python, Java, C++—were built on ideas from C. Learning it helps you understand how computers really work “under the hood.”</p>
+
+            <pre class="code-block"><code>// C
+#include &lt;stdio.h&gt;
+
+int main() {
+    printf("Hello, world!\n");
+    return 0;
+}</code></pre>
+            <p><em>What to notice:</em> C is very explicit—you tell the computer exactly what to do, step by step. It’s less forgiving but incredibly educational.</p>
+
+            <h5 style="font-weight: 600;">C++ — the performance powerhouse</h5>
+            <p>C++ builds on C, adding features that make large, complex programs easier to manage. It’s used for high-performance systems like games, operating systems, and simulations.</p>
+
+            <pre class="code-block"><code>// C++
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    cout &lt;&lt; "Hello, world!" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+            <p><em>What to notice:</em> A bit like C, but more modern and expressive. It’s powerful once you get comfortable with it.</p>
+
+            <h5 style="font-weight: 600;">Swift & Kotlin — the app architects</h5>
+            <p>Want to build the next viral mobile app? Swift (for iOS) and Kotlin (for Android) are your go-to tools. They’re clean, safe, and designed for modern app development.</p>
+
+            <pre class="code-block"><code>// Swift
+print("Hello, world!")</code></pre>
+
+            <pre class="code-block"><code>// Kotlin
+fun main() {
+    println("Hello, world!")
+}</code></pre>
+            <p><em>What to notice:</em> Swift looks like Python—minimal and readable—while Kotlin feels like a simplified Java. Both are modern and beginner-friendly.</p>
+
+            <h5 style="font-weight: 600;">So... which one should <em>you</em> start with?</h5>
+            <p>There’s no single “best” language—only the one that fits your goals right now. If you want to analyze data or try AI, start with Python. If you love websites, pick JavaScript. Curious how computers really work? Go with C. And if apps excite you, Swift or Kotlin are perfect starting points.</p>
+
+            <p>The cool thing is, once you learn one language, learning others becomes much easier. The logic behind them—variables, loops, conditionals—stays the same. You’re just learning to “speak” it in a different accent.</p>
+
+            <p>So go ahead: pick your first language, open your code editor, and type those two magic words: <code>Hello, world!</code> You’ll be surprised how far that small step can take you.</p>
+        </main>
+    </article>
+
+    <footer class="text-left">
+        <p>&copy; <span id="year"></span> The CompPendium</p>
+        <div class="link-container">
+            <ul>
+                <li><a href="../../mainPage/index.html">Home</a></li>
+                <li><a href="../../aboutPage/index.html">About Us</a></li>
+                <li><a href="../../contactPage/index.php">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            let scrollPosition = window.scrollY + window.innerHeight;
+            let pageHeight = document.documentElement.scrollHeight;
+            if (scrollPosition >= pageHeight) {
+                window.scrollTo(0, pageHeight - window.innerHeight);
+            }
+        });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        // Enhance code blocks into dark "editor-like" windows
+        function enhanceCodeBlocks() {
+            const blocks = document.querySelectorAll('pre.code-block');
+            blocks.forEach(pre => {
+                const codeEl = pre.querySelector('code') || pre;
+                const codeText = codeEl.textContent || '';
+
+                // Derive a language label from the first non-empty line if it starts with comment markers
+                let label = 'Code';
+                const firstLine = (codeText.split('\n').find(l => l.trim().length) || '').trim();
+                const langMatch = firstLine.match(/^\s*(?:#|\/\/|\/\*)\s*([^*\/].*?)\s*\*?$/);
+                if (langMatch && langMatch[1]) {
+                    label = langMatch[1].trim();
+                }
+
+                // Build wrapper
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-window';
+
+                // Toolbar with traffic lights
+                const toolbar = document.createElement('div');
+                toolbar.className = 'code-toolbar';
+                const red = document.createElement('span'); red.className = 'traffic-light red';
+                const yellow = document.createElement('span'); yellow.className = 'traffic-light yellow';
+                const green = document.createElement('span'); green.className = 'traffic-light green';
+                const filename = document.createElement('span'); filename.className = 'code-filename'; filename.textContent = label;
+                toolbar.appendChild(red); toolbar.appendChild(yellow); toolbar.appendChild(green); toolbar.appendChild(filename);
+
+                // Assemble
+                pre.parentNode.insertBefore(wrapper, pre);
+                wrapper.appendChild(toolbar);
+                wrapper.appendChild(pre);
+            });
+        }
+
+        window.addEventListener('load', function () {
+            enhanceCodeBlocks();
+            // Wire up interactive web demo
+            (function initMiniWebDemo() {
+                const preview = document.getElementById('demoPreview');
+                if (!preview) { document.body.style.visibility = 'visible'; return; }
+                const nameInput = document.getElementById('demoName');
+                const heading = document.getElementById('demoHeading');
+                const msg = document.getElementById('demoMessage');
+                const updateBtn = document.getElementById('demoUpdateBtn');
+                const themeBtn = document.getElementById('demoThemeBtn');
+                const countBtn = document.getElementById('demoCountBtn');
+                const countSpan = document.getElementById('demoCount');
+                let count = 0;
+
+                updateBtn.addEventListener('click', () => {
+                    const name = (nameInput.value || '').trim();
+                    heading.textContent = name ? `Hello, ${name}!` : 'Hello, web explorer!';
+                    if (msg) msg.textContent = name ? `Nice to meet you, ${name}.` : 'Type your name below and press Update.';
+                });
+
+                // Press Enter in the input to trigger Update
+                nameInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        updateBtn.click();
+                    }
+                });
+
+                themeBtn.addEventListener('click', () => {
+                    preview.classList.toggle('dark');
+                });
+
+                countBtn.addEventListener('click', () => {
+                    count += 1;
+                    countSpan.textContent = String(count);
+                });
+            })();
+            document.body.style.visibility = 'visible';
+        });
+    </script>
+</body>
+
+</html>
