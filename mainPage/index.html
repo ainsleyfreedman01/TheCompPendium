@@ -59,9 +59,49 @@
                 <div class="section-header text-center mb-5">
                     <h2 class="section-title">Latest Articles</h2>
                 </div>
+                                <!-- Filters toolbar (compact) -->
+                                <div class="filters-toolbar mb-3" aria-label="Filter controls">
+                                        <button type="button" class="filter-open" data-toggle="modal" data-target="#filterModal" aria-haspopup="dialog">
+                                                Filter topics
+                                        </button>
+                                        <div class="filters-summary" id="active-filters-summary" aria-live="polite"></div>
+                                        <div class="toolbar-actions">
+                                                <button type="button" class="clear-filters" aria-label="Clear all filters">Clear</button>
+                                                <div id="results-counter" class="results-counter" aria-live="polite" aria-atomic="true">0 results</div>
+                                        </div>
+                                </div>
+
+                                <!-- Filter Modal -->
+                                <div class="modal fade filter-modal" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="filterModalLabel">Filter by topic</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="filter-bar" role="group" aria-label="Filter articles by topic">
+                                                        <button type="button" class="filter-btn" data-topic="foundations" aria-pressed="false">Foundations</button>
+                                                        <button type="button" class="filter-btn" data-topic="getting-started" aria-pressed="false">Getting Started</button>
+                                                        <button type="button" class="filter-btn" data-topic="programming-languages" aria-pressed="false">Programming Languages</button>
+                                                        <button type="button" class="filter-btn" data-topic="careers" aria-pressed="false">Careers</button>
+                                                        <button type="button" class="filter-btn" data-topic="ai-ml" aria-pressed="false">AI / ML</button>
+                                                        <button type="button" class="filter-btn" data-topic="ethics" aria-pressed="false">Ethics</button>
+                                                        <button type="button" class="filter-btn" data-topic="data-algorithms" aria-pressed="false">Data/Algorithms</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn-clear clear-filters">Clear all</button>
+                                                <button type="button" class="btn-done" data-dismiss="modal">Done</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                 
                 <div class="row card-container">
-                    <div class="col-12 col-lg-6 mb-4">
+                    <div class="col-12 col-lg-6 mb-4 article-card-col" data-topics="foundations,data-algorithms,getting-started">
                         <a href="../blog-posts/what-is-computer-science.html" class="text-decoration-none">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -70,13 +110,18 @@
                                         This article takes a deep dive into the world of computer science, serving as an
                                         introduction for learners looking to understand the fundamentals.
                                     </p>
+                                    <div class="topic-tags">
+                                        <span class="topic-tag">Foundations</span>
+                                        <span class="topic-tag">Data/Algorithms</span>
+                                        <span class="topic-tag">Getting Started</span>
+                                    </div>
                                     <span class="read-more">Read more →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-12 col-lg-6 mb-4">
+                    <div class="col-12 col-lg-6 mb-4 article-card-col" data-topics="careers,foundations">
                         <a href="../blog-posts/what-can-i-do.html" class="text-decoration-none">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -85,13 +130,17 @@
                                         This article explores the opportunities and possibilities that computer science and
                                         technology can offer in today's digital world.
                                     </p>
+                                    <div class="topic-tags">
+                                        <span class="topic-tag">Careers</span>
+                                        <span class="topic-tag">Foundations</span>
+                                    </div>
                                     <span class="read-more">Read more →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
 
-                    <div class="col-12 col-lg-6 mb-4">
+                    <div class="col-12 col-lg-6 mb-4 article-card-col" data-topics="getting-started,programming-languages">
                         <a href="../blog-posts/where-should-i-start.html" class="text-decoration-none">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -99,12 +148,16 @@
                                     <p class="card-text">
                                         Feeling overwhelmed by Python, Java, JavaScript, C, C++, Swift or Kotlin? This guide breaks down how to choose your first programming language based on goals and mindset.
                                     </p>
+                                    <div class="topic-tags">
+                                        <span class="topic-tag">Getting Started</span>
+                                        <span class="topic-tag">Programming Languages</span>
+                                    </div>
                                     <span class="read-more">Read more →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4">
+                    <div class="col-12 col-lg-6 mb-4 article-card-col" data-topics="ai-ml,foundations,data-algorithms">
                         <a href="../blog-posts/ai-where-does-it-fit-in.html" class="text-decoration-none">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -112,12 +165,17 @@
                                     <p class="card-text">
                                         A walkthrough of how artificial intelligence intersects with core CS concepts—demystifying buzzwords and clarifying what matters for learners today.
                                     </p>
+                                    <div class="topic-tags">
+                                        <span class="topic-tag">AI / ML</span>
+                                        <span class="topic-tag">Foundations</span>
+                                        <span class="topic-tag">Data/Algorithms</span>
+                                    </div>
                                     <span class="read-more">Read more →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-lg-6 mb-4">
+                    <div class="col-12 col-lg-6 mb-4 article-card-col" data-topics="ai-ml,ethics">
                         <a href="../blog-posts/ai-responsible-use-and-ethics.html" class="text-decoration-none">
                             <div class="card h-100">
                                 <div class="card-body">
@@ -125,11 +183,20 @@
                                     <p class="card-text">
                                         Explore fairness, transparency, privacy, and accountability in AI systems—plus practical strategies students can use to recognize and mitigate bias early.
                                     </p>
+                                    <div class="topic-tags">
+                                        <span class="topic-tag">AI / ML</span>
+                                        <span class="topic-tag">Ethics</span>
+                                    </div>
                                     <span class="read-more">Read more →</span>
                                 </div>
                             </div>
                         </a>
                     </div>
+                </div>
+
+                <!-- No results message -->
+                <div id="no-results" class="no-results text-center d-none" aria-live="polite">
+                    No articles match the selected topics.
                 </div>
             </div>
         </section>
@@ -175,6 +242,126 @@
         window.addEventListener('load', function () {
             document.body.style.visibility = 'visible';
         });
+
+        // Topic filtering logic
+        (function () {
+            const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+            const clearBtns = Array.from(document.querySelectorAll('.clear-filters'));
+            const cards = Array.from(document.querySelectorAll('.article-card-col'));
+            const noResults = document.getElementById('no-results');
+            const summaryEl = document.getElementById('active-filters-summary');
+
+            function getSelectedTopics() {
+                return buttons
+                    .filter(btn => btn.classList.contains('active'))
+                    .map(btn => btn.getAttribute('data-topic'));
+            }
+
+            function intersects(a, b) {
+                return a.some(x => b.includes(x));
+            }
+
+            function updateResultsCounter(count) {
+                const counter = document.getElementById('results-counter');
+                if (counter) {
+                    counter.textContent = `${count} result${count === 1 ? '' : 's'}`;
+                }
+            }
+
+            function updateActiveSummary() {
+                if (!summaryEl) return;
+                const selected = getSelectedTopics();
+                if (selected.length === 0) {
+                    summaryEl.innerHTML = '<span class="summary-none">All topics</span>';
+                    return;
+                }
+                const labelMap = {
+                    'foundations': 'Foundations',
+                    'getting-started': 'Getting Started',
+                    'programming-languages': 'Programming Languages',
+                    'careers': 'Careers',
+                    'ai-ml': 'AI / ML',
+                    'ethics': 'Ethics',
+                    'data-algorithms': 'Data/Algorithms'
+                };
+                summaryEl.innerHTML = selected
+                    .map(t => `<span class="summary-chip">${labelMap[t] || t}</span>`)
+                    .join('');
+            }
+
+            function showCol(col) {
+                if (!col.classList.contains('d-none')) {
+                    // Ensure visible state
+                    col.classList.remove('is-hidden');
+                    return;
+                }
+                col.classList.remove('d-none');
+                // Start from hidden state then transition to visible
+                col.classList.add('is-hidden');
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        col.classList.remove('is-hidden');
+                    });
+                });
+            }
+
+            function hideCol(col) {
+                if (col.classList.contains('d-none')) return;
+                col.classList.add('is-hidden');
+                const onEnd = (e) => {
+                    if (e.propertyName !== 'opacity') return;
+                    col.removeEventListener('transitionend', onEnd);
+                    col.classList.add('d-none');
+                };
+                col.addEventListener('transitionend', onEnd);
+            }
+
+            function filterCards() {
+                const selected = getSelectedTopics();
+                let visibleCount = 0;
+
+                cards.forEach(col => {
+                    const topics = (col.getAttribute('data-topics') || '')
+                        .split(',')
+                        .map(t => t.trim())
+                        .filter(Boolean);
+
+                    const match = selected.length === 0 || intersects(selected, topics);
+
+                    if (match) {
+                        showCol(col);
+                        visibleCount++;
+                    } else {
+                        hideCol(col);
+                    }
+                });
+
+                if (noResults) {
+                    noResults.classList.toggle('d-none', visibleCount !== 0);
+                }
+
+                updateResultsCounter(visibleCount);
+                updateActiveSummary();
+            }
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const isActive = btn.classList.toggle('active');
+                    btn.setAttribute('aria-pressed', String(isActive));
+                    filterCards();
+                });
+            });
+
+            if (clearBtns.length) {
+                clearBtns.forEach(btn => btn.addEventListener('click', () => {
+                    buttons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+                    filterCards();
+                }));
+            }
+
+            // Initial state
+            filterCards();
+        })();
     </script>
 </body>
 
