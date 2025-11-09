@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CompPendium | What is computer science, anyway?</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" href="../../images/logoOfficial.png" type="image/png">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-light py-3">
+        <a href="/"><img class="logo" src="../../images/logo.png"></a>
+        <button class="navbar-toggler border-0" type="button" id="navbar-toggler">
+            <div class="navbar-icon"></div>
+        </button>
+    </nav>
+
+    <div class="offcanvas-collapse" id="offcanvasMenu">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+        </ul>
+    </div>
+
+    <article>
+        <h1>AI: Where does it fit in?</h1>
+        <br>
+        <main>
+            <p>So, you’ve probably heard the term <strong>AI</strong> tossed around quite a bit lately. Maybe you’ve
+                read headlines about it writing stories, generating art, or even coding entire apps (and yes, this blog
+                post was <em>not</em> written by one… promise!). But what <em>is</em> AI really—and where does it fit
+                into everything we’ve been learning so far?</p>
+
+            <p>AI, or <strong>Artificial Intelligence</strong>, is exactly what it sounds like: giving computers the
+                ability to perform tasks that normally require human intelligence. That could mean understanding
+                language, recognizing images, playing games, or even making predictions about the future.</p>
+
+            <p>But before we dive into how it works, let’s clear something up: AI isn’t a robot with emotions (at least
+                not yet). It’s more like a collection of tools and systems that help computers process information,
+                learn from it, and make decisions. You can think of it as a combination of math, logic, and statistics
+                all working together to simulate “thinking.”</p>
+
+            <h5 style="font-weight: 600;">A Quick History Lesson</h5>
+            <p>The idea of AI actually dates back to the 1950s! Scientists like Alan Turing (yes, <em>that</em> Turing)
+                wondered if machines could “think.” This question led to what we now call the <strong>Turing
+                    Test</strong>, a famous experiment that asks: can a computer respond so naturally that a human can’t
+                tell it apart from another person?</p>
+
+            <p>Over time, researchers developed algorithms—essentially step-by-step procedures—to help computers learn
+                patterns and make predictions. For example, in the early days, people tried to teach computers how to
+                play chess or solve logical puzzles. Now, AI systems can do things like generate realistic images,
+                recommend your next Netflix show, and even help doctors detect diseases earlier.</p>
+
+            <h5 style="font-weight: 600;">The Three Main Types of AI</h5>
+            <p>AI can be grouped into three broad categories depending on how “smart” it is:</p>
+            <ul>
+                <li><strong>Narrow AI:</strong> The kind we use every day. Think Siri, Google Translate, or Netflix
+                    recommendations. These systems are very good at one specific task—but that’s all they can do.</li>
+                <li><strong>General AI:</strong> This would be an AI that can perform <em>any</em> intellectual task a
+                    human can. We’re not there yet (and might not be for a long time).</li>
+                <li><strong>Superintelligent AI:</strong> The theoretical kind that surpasses human intelligence
+                    entirely. This one exists only in science fiction… for now.</li>
+            </ul>
+
+            <h5 style="font-weight: 600;">So… how does AI actually work?</h5>
+            <p>At the heart of most modern AI is a concept called <strong>machine learning</strong>. Instead of
+                programming every single rule by hand, developers give the computer data—and the computer figures out
+                the patterns on its own.</p>
+
+            <p>Imagine you wanted to teach a computer to recognize pictures of cats. You could show it thousands of
+                images labeled “cat” and “not cat.” Over time, it would start learning the common patterns that make up
+                a cat: fur texture, ear shape, whiskers, and so on. This is called <strong>training</strong> a model.
+            </p>
+
+            <p>Once trained, the model can make predictions—like whether a new image contains a cat or not. It’s a
+                little like how humans learn: through repetition, experience, and feedback!</p>
+
+            <img src="./article4_images/ai_cat_training.png" alt="AI training cats vs not cats diagram">
+
+            <h5 style="font-weight: 600;">Different Kinds of Learning</h5>
+            <ul>
+                <li><strong>Supervised learning:</strong> You give the AI examples <em>and</em> the correct answers
+                    (like the cat example). The AI “learns” from the labeled data.</li>
+                <li><strong>Unsupervised learning:</strong> You only give it data—no answers—and it tries to find
+                    patterns on its own (like grouping customers by buying habits).</li>
+                <li><strong>Reinforcement learning:</strong> The AI learns by trial and error, getting “rewards” for
+                    good results—kind of like how you train a pet!</li>
+            </ul>
+
+            <h5 style="font-weight: 600;">Where Does AI Fit in Computer Science?</h5>
+            <p>AI is one branch of computer science, just like web development, cybersecurity, or data science. But what
+                makes AI special is how it connects to <em>so many other areas</em> at once. It’s used in healthcare,
+                finance, education, art, entertainment—you name it!</p>
+
+            <p>Remember when we talked about algorithms and efficiency in our first post? AI builds on those same
+                principles. It still relies on data structures, math, and logic—all core computer science concepts. So,
+                before diving deep into AI, it helps to have a solid foundation in programming, statistics, and
+                problem-solving.</p>
+
+            <h5 style="font-weight: 600;">The Famous "Hello, World!" (AI Edition)</h5>
+            <p>When people first learn programming, the classic first step is to print <strong>"Hello, World!"</strong>
+                on the screen. It’s a way of saying, “I got my code to run!”—like a programmer’s first victory dance. 🥳
+            </p>
+            <p>But what would “Hello, World!” look like in AI? It might be something simple like teaching a computer to
+                recognize the difference between two objects, or to respond with a short phrase when you greet it.
+                Instead of <code>print("Hello, World!")</code>, your program might “learn” that the correct output for a
+                greeting input is “Hello, human!”</p>
+            <p>It’s the same spirit—celebrating your first working interaction—but now, your code is <em>thinking</em>
+                just a little bit.</p>
+
+            <h5 style="font-weight: 600;">AI in Our Everyday Lives</h5>
+            <p>Even if you don’t realize it, AI is already all around you. When you ask your phone for directions, when
+                Netflix recommends a movie, or when your email filters out spam—AI is working behind the scenes. It’s
+                like an invisible helper that quietly makes your life easier (and sometimes a little creepier, depending
+                on how many targeted ads you get).</p>
+
+            <p>But AI isn’t just about convenience. It’s helping detect wildfires earlier, translate languages in real
+                time, and even assist people with disabilities through speech recognition and accessibility tools.
+                That’s where its potential really shines—using technology to make the world a little more inclusive and
+                efficient.</p>
+
+            <h5 style="font-weight: 600;">So… should you learn AI?</h5>
+            <p>If you’re curious about how computers “think” or how apps like ChatGPT or image generators work, then
+                yes—absolutely! AI can seem intimidating at first (it’s a lot of math, data, and algorithms), but the
+                beauty of computer science is that everything builds on what you already know. Start small: understand
+                logic, learn Python, and get comfortable with how data moves through a program. The rest will start to
+                make sense from there.</p>
+
+            <p>AI isn’t replacing computer science—it’s expanding it. And by learning it, you’re joining one of the most
+                exciting areas of discovery in technology today.</p>
+
+            <p>In short: AI fits in <em>everywhere</em>—but it also fits right alongside your journey as a computer
+                scientist. Who knows? Maybe your “Hello, World!” moment is just the start of something intelligent.</p>
+        </main>
+    </article>
+
+
+
+
+    <!-- Footer -->
+    <footer class="text-left">
+        <p>&copy; <span id="year"></span> The CompPendium</p>
+        <div class="link-container">
+            <ul>
+                <li><a href="../../mainPage/index.html">Home</a></li>
+                <li><a href="../../aboutPage/index.html">About Us</a></li>
+                <li><a href="../../contactPage/index.php">Contact Us</a></li>
+            </ul>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#navbar-toggler').on('click', function () {
+                $('#offcanvasMenu').toggleClass('open');
+                $('.navbar-icon').toggleClass('open');
+            });
+        });
+
+        window.addEventListener('scroll', function () {
+            // Get the scroll position
+            let scrollPosition = window.scrollY + window.innerHeight;
+
+            // Get the total scrollable height of the page
+            let pageHeight = document.documentElement.scrollHeight;
+
+            // If the user has reached the bottom of the page
+            if (scrollPosition >= pageHeight) {
+                // Lock the scroll position
+                window.scrollTo(0, pageHeight - window.innerHeight);
+            }
+        });
+
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+
+        window.addEventListener('load', function () {
+            document.body.style.visibility = 'visible';
+        });
+    </script>
+</body>
+
+</html>
