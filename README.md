@@ -1,35 +1,106 @@
-# 🧠 The CompPendium
+# The CompPendium
 
-Welcome to **The CompPendium** — a computer science blog dedicated to helping learners who are *new to computer science* build a strong foundation in computer science.
+The CompPendium is my personal computer science blog where I break down CS concepts in a clear, approachable way while documenting my own learning journey.
 
-## 🌐 About the Project
+Unlike a polished production blog, this is intentionally a **learning-focused project** — meant to grow alongside my skills as a developer and computer science student.
 
-**The CompPendium** serves as a learning resource and personal project that breaks down computer science concepts in an approachable, beginner-friendly way.  
-Each post explains topics clearly, provides examples and visuals, and connects theory to real-world applications.
+## Purpose
 
-## 🚀 Features
+The CompPendium was created to make computer science more accessible to students who may not have strong CS programs or resources at their schools.
 
-- Simple, responsive design built from scratch  
-- Organized sections for easy navigation  
-- Posts written for complete beginners — no jargon, just learning  
-- Deployed on Heroku for easy access and scalability  
+Not everyone has access to AP Computer Science, coding clubs, or teachers with programming backgrounds.  
+I wanted to create a free, easy-to-understand resource that helps level the playing field for curious learners.
 
-## 🛠️ Tech Stack
+This project aims to:
 
-- **Frontend:** HTML, CSS, JavaScript  
-- **Backend:** Node.js (Express)  
-- **Hosting:** Heroku  
-- **Version Control:** Git + GitHub  
+- Introduce students to the world of computer science in an approachable way  
+- Break down intimidating concepts into understandable pieces  
+- Provide a self-guided learning resource for students without formal CS education  
+- Encourage students to explore computer science regardless of background or access  
 
-## 📚 Learning Goals
+It’s both a learning archive and a small step toward making CS education more equitable.
 
-This project was created to:
-- Reinforce my own understanding of core CS and web concepts  
-- Practice backend integration using Node.js  
-- Build a full-stack project from scratch  
-- Share what I learn with others who are new to computer science  
+## What Went Into Building It
 
+This project wasn’t just about writing blog posts.  
+Most of the work happened behind the scenes.
 
+### What I focused on:
+- Organizing technical content in a clear, logical structure  
+- Designing a system that makes it easy to add future posts  
+- Creating reusable layouts and components  
+- Implementing responsive design for different screen sizes  
+- Creating a consistent visual identity and theme  
+- Making content readable, accessible, and beginner-friendly  
+- Structuring files for long-term scalability  
 
-> Thanks in advance for reading, and happy learning! 
-> — *Ainsley Freedman*
+I wanted to understand how a blog works under the hood instead of relying completely on fully prebuilt CMS platforms.
+
+## Tech Stack
+
+### Frontend
+- HTML  
+- CSS  
+- JavaScript  
+- Bootstrap
+
+### Backend
+- Node.js
+- Express.js
+
+### Other Tools & Technologies
+- Git + GitHub for version control  
+- GitHub Pages for hosting  
+- Markdown for drafting content  
+- Responsive design principles  
+
+Bootstrap helped speed up layout and responsiveness while still allowing me to customize the design and structure manually.
+
+## Development Process
+
+I treated this like a real software project, not just a writing exercise.
+
+Some things I deliberately practiced:
+- Designing reusable UI components  
+- Separating layout, content, and styling  
+- Maintaining consistency across posts  
+- Building with scalability in mind  
+- Writing clean, organized files  
+- Thinking about how beginners actually learn technical concepts  
+
+Each post doubled as both a blog entry and a design iteration.
+
+## Writing Philosophy
+
+My goal with The CompPendium is to:
+
+- Explain concepts without gatekeeping  
+- Start with intuition before jumping into formal definitions  
+- Use simple language before technical language  
+- Include examples and visuals when possible  
+- Write like I’m teaching it to someone just starting out  
+
+The blog is meant to feel supportive, not intimidating.
+
+## What I Learned
+
+This project helped me build skills in:
+
+- Technical communication  
+- Frontend design and layout  
+- Organizing large content-based projects  
+- Thinking about accessibility in education  
+- Translating complex ideas into simple explanations  
+- Long-term project planning  
+
+It helped me grow as both a programmer and an educator.
+
+## Future Goals
+
+Some directions I’d love to take The CompPendium:
+
+- Interactive visualizations and simulations  
+- Quizzes and practice problems  
+- Deeper dives into algorithms and data structures  
+- Beginner roadmaps for different CS topics  
+- Improved accessibility features  
