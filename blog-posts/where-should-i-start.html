@@ -86,7 +86,7 @@ console.log("Hello, world!");</code></pre>
                         <h5 style="font-weight: 600;">HTML & CSS — the foundation of the web</h5>
                         <p>If JavaScript adds interactivity, then HTML and CSS are the bedrock of web pages themselves. HTML (HyperText Markup Language) defines the structure and meaning of your content, while CSS (Cascading Style Sheets) controls how that content looks—layout, colors, spacing, and typography. Together, they’re the fastest way to start creating things you can see and share in a browser.</p>
 
-                        <pre class="code-block"><code><!-- HTML -->
+                        <pre class="code-block"><code>// HTML
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
     &lt;head&gt;
@@ -100,7 +100,7 @@ console.log("Hello, world!");</code></pre>
     &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-                        <pre class="code-block"><code>/* CSS */
+                        <pre class="code-block"><code>/* CSS
 h1 {
     color: #2563eb; /* a friendly blue */
 }
@@ -124,29 +124,83 @@ p {
                                                             <button type="button" id="demoCountBtn">Count: <span id="demoCount">0</span></button>
                                                     </div>
                                             </div>
-                                            <pre class="code-block"><code><!-- HTML (structure) -->
-            &lt;div class="web-demo-preview"&gt;
-                &lt;h3&gt;Hello, web explorer!&lt;/h3&gt;
-                &lt;p&gt;Type your name below and press Update.&lt;/p&gt;
-                &lt;input type="text" placeholder="Your name..." /&gt;
-                &lt;button&gt;Update&lt;/button&gt;
-                &lt;button&gt;Toggle Theme&lt;/button&gt;
-            &lt;/div&gt;</code></pre>
-                                            <pre class="code-block"><code>/* CSS (presentation) */
-            .web-demo-preview {
-                background: white;
-                border: 1px solid #e5e7eb;
-                border-radius: 14px;
-                padding: 1rem;
-            }
-            .web-demo-preview.dark { background:#0b1220; color:#e5e7eb; }</code></pre>
-                                            <pre class="code-block"><code>// JavaScript (behavior)
-            const nameInput = document.getElementById('demoName');
-            const heading = document.getElementById('demoHeading');
-            document.getElementById('demoUpdateBtn').addEventListener('click', () => {
-                const name = nameInput.value.trim();
-                heading.textContent = name ? `Hello, ${name}!` : 'Hello, web explorer!';
-            });</code></pre>
+
+                                            <div class="demo-source" id="demoSource" aria-live="polite">
+                                                <h6>HTML</h6>
+                                                <pre class="code-block"><code> // HTML
+&lt;div class="web-demo-preview"&gt;
+    &lt;h3 id="demoHeading"&gt;Hello, web explorer!&lt;/h3&gt;
+    &lt;p id="demoMessage"&gt;Type your name below and press &lt;strong&gt;Update&lt;/strong&gt;.&lt;/p&gt;
+    &lt;div class="web-demo-controls" style="margin-top:0.75rem;"&gt;
+        &lt;input type="text" id="demoName" placeholder="Your name..." aria-label="Your name" /&gt;
+        &lt;button type="button" id="demoUpdateBtn"&gt;Update&lt;/button&gt;
+        &lt;button type="button" id="demoThemeBtn"&gt;Toggle Theme&lt;/button&gt;
+        &lt;button type="button" id="demoCountBtn"&gt;Count: &lt;span id="demoCount"&gt;0&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+                                                <h6>CSS</h6>
+                                                <pre class="code-block"><code> /* CSS
+.web-demo-preview {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 1rem;
+}
+.web-demo-preview.dark {
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+.web-demo-controls input[type="text"] {
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    margin-right: 0.5rem;
+}
+.web-demo-controls button {
+    margin-right: 0.35rem;
+}
+</code></pre>
+
+                                                <h6>JavaScript</h6>
+                                                <pre class="code-block"><code>// JavaScript
+(function initMiniWebDemo() {
+    const preview = document.getElementById('demoPreview');
+    if (!preview) return;
+
+    const nameInput = document.getElementById('demoName');
+    const heading = document.getElementById('demoHeading');
+    const msg = document.getElementById('demoMessage');
+    const updateBtn = document.getElementById('demoUpdateBtn');
+    const themeBtn = document.getElementById('demoThemeBtn');
+    const countBtn = document.getElementById('demoCountBtn');
+    const countSpan = document.getElementById('demoCount');
+    let count = 0;
+
+    updateBtn.addEventListener('click', () => {
+        const name = (nameInput.value || '').trim();
+        heading.textContent = name ? `Hello, ${name}!` : 'Hello, web explorer!';
+        if (msg) msg.textContent = name ? `Nice to meet you, ${name}.` : 'Type your name below and press Update.';
+    });
+
+    // Press Enter in the input to trigger Update
+    nameInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            updateBtn.click();
+        }
+    });
+
+    themeBtn.addEventListener('click', () => {
+        preview.classList.toggle('dark');
+    });
+
+    countBtn.addEventListener('click', () => {
+        count += 1;
+        countSpan.textContent = String(count);
+    });
+})();</code></pre>
+                                            </div>
                                     </div>
                                     <p><em>What to notice:</em> Structure (HTML), appearance (CSS), and interaction (JavaScript) are separate—but they work together to create an experience.</p>
 
@@ -297,6 +351,7 @@ fun main() {
                     countSpan.textContent = String(count);
                 });
             })();
+
             document.body.style.visibility = 'visible';
         });
     </script>

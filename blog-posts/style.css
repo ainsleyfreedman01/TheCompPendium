@@ -524,6 +524,78 @@ pre.code-block code { background: transparent; color: inherit; }
     }
 }
 
+/* Demo source responsiveness: prevent horizontal overflow on small screens */
+.demo-source {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.demo-source pre.code-block,
+.demo-source .code-window pre {
+    /* Keep original formatting, allow horizontal scrolling when lines are long */
+    max-height: 40vh;
+    overflow: auto; /* enable vertical scrolling when tall */
+    overflow-x: auto; /* enable horizontal scrolling for long lines */
+    white-space: pre; /* do not wrap long lines, preserve formatting */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on mobile */
+}
+
+@media (max-width: 480px) {
+    .demo-source pre.code-block,
+    .demo-source .code-window pre {
+        font-size: 0.8rem;
+        max-height: 50vh;
+        padding: 0.85rem 0.95rem;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Prevent the demo container from forcing page overflow while keeping
+   the code block horizontally scrollable. The important part is to
+   allow inner <pre> elements to scroll but not grow the parent. */
+.web-demo,
+.web-demo-preview,
+.demo-source {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0; /* allow children to overflow internally instead of growing the parent */
+}
+
+/* Ensure the code-window wrapper doesn't clip the internal pre's scrollbar
+   and that the pre itself can scroll horizontally without expanding layout. */
+.demo-source .code-window {
+    overflow: visible;
+}
+.demo-source pre.code-block,
+.demo-source .code-window pre {
+    min-width: 0; /* prevents intrinsic minimum width from forcing parent overflow */
+}
+
+/* Ensure demo-specific code windows are consistently dark and do not
+   show any accidental white background/artifacts (e.g., on small screens
+   where default browsers might style nested code elements). */
+.demo-source .code-window {
+    background: #0d1117 !important;
+    border: 1px solid #1f2937 !important;
+    box-shadow: 0 8px 20px -6px rgba(0,0,0,0.35); /* slightly reduced shadow */
+    overflow: hidden; /* keep inner pre from visually overflowing parent */
+    border-radius: 14px;
+}
+.demo-source pre.code-block {
+    background: transparent !important; /* inherit the code-window background */
+    color: #e6edf3 !important;
+    border-radius: 0 0 12px 12px; /* match bottom corners so no white shows */
+}
+.demo-source pre.code-block code {
+    background: transparent !important;
+    color: inherit !important;
+}
+
+/* Fix the small white corner where horizontal+vertical scrollbars meet */
+.demo-source pre.code-block::-webkit-scrollbar-corner {
+    background: #0d1117;
+}
+
 /* Basic inline code (outside big blocks) */
 code:not(.block) {
     background:#1e293b;
