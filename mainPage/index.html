@@ -61,14 +61,16 @@
                 </div>
                                 <!-- Filters toolbar (compact) -->
                                 <div class="filters-toolbar mb-3" aria-label="Filter controls">
-                                        <button type="button" class="filter-open" data-toggle="modal" data-target="#filterModal" aria-haspopup="dialog">
-                                                Filter topics
-                                        </button>
-                                        <div class="filters-summary" id="active-filters-summary" aria-live="polite"></div>
+                                    <div class="filters-top d-flex align-items-center">
+                                        <button type="button" class="filter-open" data-toggle="modal" data-target="#filterModal" aria-haspopup="dialog">Filter topics</button>
+                                        <div class="filters-summary ml-3" id="active-filters-summary" aria-live="polite">All topics</div>
+                                    </div>
+                                    <div class="filters-bottom mt-2" style="flex-basis:100%;">
                                         <div class="toolbar-actions">
-                                                <button type="button" class="clear-filters" aria-label="Clear all filters">Clear</button>
-                                                <div id="results-counter" class="results-counter" aria-live="polite" aria-atomic="true">0 results</div>
+                                            <button type="button" class="clear-filters" aria-label="Clear all filters">Clear</button>
+                                            <div id="results-counter" class="results-counter" aria-live="polite" aria-atomic="true">0 results</div>
                                         </div>
+                                    </div>
                                 </div>
 
                                 <!-- Filter Modal -->
