@@ -109,10 +109,15 @@ Some directions I’d love to take The CompPendium:
 
 The contact form backend can be run in a safe test mode that prevents real emails from being sent and is used by the repository's CI to validate changes.
 
-- Start the server locally in TEST_MODE (no real emails will be sent):
 
 ```bash
 TEST_MODE=true node contactPage/server.js
+Additional anti-spam measures implemented in this branch:
+
+- Honeypot: the contact form includes a hidden `honeypot` field that legitimate users do not see; bot submissions that fill it are rejected.
+- Rate limiting: the server uses a simple IP-based rate limiter (`express-rate-limit`) to limit how many `/send-email` requests an IP can make in a short window.
+
+These reduce the chance of bot traffic producing emails with missing or `undefined` fields.
 ```
 
 - Manual curl checks:
