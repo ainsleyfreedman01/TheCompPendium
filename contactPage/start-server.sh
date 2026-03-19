@@ -1,13 +1,22 @@
 #!/bin/bash
+set -euo pipefail
 
-# Decrypt the server.js file
-gpg --decrypt --output server.js server.js.gpg
+# Safely decrypt and run the server once. The decrypted file is removed when the
+# process exits. This avoids starting multiple server instances or removing the
+# file while the server is still running.
 
-# Run the server (assuming you're using Node.js)
-node server.js
+if [ ! -f server.js.gpg ]; then
+	echo "Encrypted server.js.gpg not found in $(pwd)" >&2
+	exit 1
+fi
 
-# Optionally, remove the decrypted server.js file after running the server for security
-rm server.js
+TMP_JS="server.js.$$"
+gpg --decrypt --output "$TMP_JS" server.js.gpg
 
-# Run the server (assuming you're using Node.js)
-node server.js
+cleanup() {
+	rm -f "$TMP_JS"
+}
+trap cleanup EXIT
+
+echo "Starting server from decrypted temp file $TMP_JS"
+node "$TMP_JS"
