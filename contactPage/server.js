@@ -48,6 +48,20 @@ app.get('/contact', (req, res) => {
 app.post('/send-email', (req, res) => {
     const { name, email, message } = req.body;
 
+    // Helper to detect missing values or the literal string 'undefined'
+    const isMissing = (v) => (v === undefined || v === null || v === '' || v === 'undefined');
+
+    if (isMissing(name) || isMissing(email) || isMissing(message)) {
+        console.log('Invalid contact form submission from', req.ip, 'payload:', req.body);
+        return res.status(400).send('Missing required fields');
+    }
+
+    // If running in TEST_MODE, don't actually send an email — simulate success.
+    if (process.env.TEST_MODE === 'true') {
+        console.log('TEST_MODE: Received contact form:', { name, email, message });
+        return res.send('Message has been sent successfully. (test mode)');
+    }
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
