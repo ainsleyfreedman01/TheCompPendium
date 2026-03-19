@@ -63,7 +63,10 @@
     <div class="feedback-container">
         <div class="feedback-form">
             <h2>Send Us Your Feedback</h2>
-            <form id="feedbackForm" action="/send-email" method="POST" enctype="multipart/form-data">
+            <form id="feedbackForm" action="/send-email" method="POST">
+                <!-- Honeypot field to detect bots: hidden from users but may be filled by bots -->
+                <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
+
                 <label for="name">Name:</label>
                 <input type="text" name="name" required>
 
@@ -95,6 +98,12 @@
     <script>
         $('#feedbackForm').on('submit', function (event) {
             event.preventDefault(); // Prevent the form from submitting normally
+
+            // Use browser validation before sending via AJAX
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                return;
+            }
 
             var formData = $(this).serialize(); // Serialize form data
 

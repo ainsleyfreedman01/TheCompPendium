@@ -4,6 +4,7 @@ require('dotenv').config();  // This loads the .env file locally (not needed on 
 const password = process.env.PASSWORD;  // Retrieve password from environment variable
 
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const app = express();
@@ -26,6 +27,17 @@ app.use('/blog-posts', express.static(path.join(projectRoot, 'blog-posts')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Simple rate limiter to reduce spam: limit to 30 requests per 15 minutes per IP
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 30,
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+
+// Apply rate limiter to the send-email route
+app.use('/send-email', limiter);
+
 app.get('/robots.txt', (req, res) => {
     res.sendFile(path.join(projectRoot, 'robots.txt'));
 });
@@ -46,7 +58,27 @@ app.get('/contact', (req, res) => {
 
 // Send email route
 app.post('/send-email', (req, res) => {
-    const { name, email, message } = req.body;
+    const { name, email, message, honeypot } = req.body;
+
+    // If the honeypot field is filled, treat as a bot and reject silently
+    if (honeypot && honeypot.trim() !== '') {
+        console.log('Honeypot triggered - rejecting submission from', req.ip, 'payload:', req.body);
+        return res.status(400).send('Missing required fields');
+    }
+
+    // Helper to detect missing values or the literal string 'undefined'
+    const isMissing = (v) => (v === undefined || v === null || v === '' || v === 'undefined');
+
+    if (isMissing(name) || isMissing(email) || isMissing(message)) {
+        console.log('Invalid contact form submission from', req.ip, 'payload:', req.body);
+        return res.status(400).send('Missing required fields');
+    }
+
+    // If running in TEST_MODE, don't actually send an email — simulate success.
+    if (process.env.TEST_MODE === 'true') {
+        console.log('TEST_MODE: Received contact form:', { name, email, message });
+        return res.send('Message has been sent successfully. (test mode)');
+    }
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',

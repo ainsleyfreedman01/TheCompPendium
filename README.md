@@ -104,3 +104,34 @@ Some directions I’d love to take The CompPendium:
 - Deeper dives into algorithms and data structures  
 - Beginner roadmaps for different CS topics  
 - Improved accessibility features  
+
+## Contact form testing
+
+The contact form backend can be run in a safe test mode that prevents real emails from being sent and is used by the repository's CI to validate changes.
+
+
+```bash
+TEST_MODE=true node contactPage/server.js
+Additional anti-spam measures implemented in this branch:
+
+- Honeypot: the contact form includes a hidden `honeypot` field that legitimate users do not see; bot submissions that fill it are rejected.
+- Rate limiting: the server uses a simple IP-based rate limiter (`express-rate-limit`) to limit how many `/send-email` requests an IP can make in a short window.
+
+These reduce the chance of bot traffic producing emails with missing or `undefined` fields.
+```
+
+- Manual curl checks:
+
+```bash
+# Valid submission (should return success message in test mode)
+curl -s -X POST -d "name=Alice&email=alice@example.com&message=Hello+from+curl" http://localhost:4000/send-email
+# => Message has been sent successfully. (test mode)
+
+# Invalid submission (literal 'undefined' values are rejected)
+curl -s -X POST -d "name=undefined&email=undefined&message=undefined" http://localhost:4000/send-email
+# => Missing required fields
+```
+
+- CI tests: there is a GitHub Actions workflow at `.github/workflows/contact-form-tests.yml` which runs on pull requests touching `contactPage/**`. It starts the server in `TEST_MODE`, performs the two curl checks above, collects server logs, and fails the job if the responses are unexpected.
+
+If you need to accept `multipart/form-data` (file uploads), consider adding `multer` on the server side and adding tests for that behavior as well.
