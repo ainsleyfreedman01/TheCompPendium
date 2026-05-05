@@ -1,5 +1,3 @@
-const sgMail = require('@sendgrid/mail');
-
 // Basic spam checks
 function isMissing(v) {
   return v === undefined || v === null || v === '' || v === 'undefined';
@@ -44,35 +42,53 @@ module.exports = async (req, res) => {
     return res.status(400).send('Missing required fields');
   }
 
-  // Use SendGrid if API key is configured
-  const sendgridKey = process.env.SENDGRID_API_KEY;
-  if (!sendgridKey) {
-    console.error('SENDGRID_API_KEY not configured');
+  // Use EmailJS REST API
+  const serviceId = process.env.EMAILJS_SERVICE_ID;
+  const templateId = process.env.EMAILJS_TEMPLATE_ID;
+  const userId = process.env.EMAILJS_USER_ID || process.env.EMAILJS_PUBLIC_KEY;
+
+  if (!serviceId || !templateId || !userId) {
+    console.error('EmailJS config not set: EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_USER_ID');
     return res.status(500).send('Email provider not configured');
   }
 
-  sgMail.setApiKey(sendgridKey);
-
-  const from = process.env.SENDGRID_FROM || process.env.EMAIL_USER || 'no-reply@thecomppendium.com';
-  const to = process.env.SENDGRID_TO || process.env.EMAIL_TO || process.env.EMAIL_USER;
-
-  const msg = {
-    to: to,
-    from: from,
-    subject: 'Feedback from The CompPendium',
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+  const emailPayload = {
+    service_id: serviceId,
+    template_id: templateId,
+    user_id: userId,
+    template_params: {
+      from_name: name,
+      from_email: email,
+      message: message,
+    },
   };
 
   if (process.env.TEST_MODE === 'true') {
-    console.log('TEST_MODE - email payload:', msg);
+    console.log('TEST_MODE - EmailJS payload:', emailPayload);
     return res.status(200).send('Message has been sent successfully. (test mode)');
   }
 
+  const doFetch = (...args) => {
+    if (typeof global.fetch === 'function') return global.fetch(...args);
+    return import('node-fetch').then(m => m.default(...args));
+  };
+
   try {
-    await sgMail.send(msg);
+    const resp = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(emailPayload),
+    });
+
+    if (!resp || !resp.ok) {
+      const text = resp ? await resp.text().catch(() => '') : '';
+      console.error('EmailJS error', resp && resp.status, text);
+      return res.status(500).send('Error sending email');
+    }
+
     return res.status(200).send('Message has been sent successfully.');
   } catch (err) {
-    console.error('sendgrid error', err);
+    console.error('EmailJS send error', err);
     return res.status(500).send('Error sending email');
   }
 };

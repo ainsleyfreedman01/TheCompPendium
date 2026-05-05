@@ -16,28 +16,33 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Start contact server in TEST_MODE
+      - name: Start local send-email wrapper (TEST_MODE)
+        env:
+          EMAILJS_SERVICE_ID: placeholder
+          EMAILJS_TEMPLATE_ID: placeholder
+          EMAILJS_USER_ID: placeholder
+          TEST_MODE: 'true'
         run: |
-          TEST_MODE=true nohup node contactPage/server.js > server.log 2>&1 & echo $! > server.pid
+          nohup node scripts/run-send-email-server.js > server.log 2>&1 & echo $! > server.pid
 
-      - name: Wait for server
+      - name: Wait for wrapper
         run: |
-          echo "Waiting for server to start..."
+          echo "Waiting for wrapper to start..."
           for i in {1..10}; do
-            if curl -sSf http://localhost:4000/ >/dev/null 2>&1; then
-              echo "Server is up"; break
+            if curl -sSf http://localhost:4000/api/send-email >/dev/null 2>&1; then
+              echo "Wrapper is up"; break
             fi
             sleep 1
-          done
+          done || true
 
       - name: Run valid submission test
         run: |
-          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST -d "name=Alice&email=alice@example.com&message=Hello+from+CI" http://localhost:4000/send-email)
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" -d '{"name":"Alice","email":"alice@example.com","message":"Hello from CI","honeypot":""}' http://localhost:4000/api/send-email)
           echo "Valid submission returned HTTP $status"
           if [ "$status" != "200" ]; then
             echo "=== server.log ==="
@@ -47,7 +52,7 @@ jobs:
 
       - name: Run invalid submission test (literal 'undefined')
         run: |
-          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST -d "name=undefined&email=undefined&message=undefined" http://localhost:4000/send-email)
+          status=$(curl -s -o /dev/null -w "%{http_code}" -X POST -H "Content-Type: application/json" -d '{"name":"undefined","email":"undefined","message":"undefined","honeypot":""}' http://localhost:4000/api/send-email)
           echo "Invalid submission returned HTTP $status"
           if [ "$status" != "400" ]; then
             echo "Expected 400 for invalid payload; dumping server.log"
@@ -61,7 +66,7 @@ jobs:
           echo "=== server.log (last 200 lines) ==="
           tail -n 200 server.log || true
 
-      - name: Stop server
+      - name: Stop wrapper
         if: always()
         run: |
           if [ -f server.pid ]; then
