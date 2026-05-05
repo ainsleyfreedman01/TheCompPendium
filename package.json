@@ -9,7 +9,7 @@
   "name": "comppendium_copy",
   "version": "1.0.0",
   "scripts": {
-    "start": "node contactPage/server.js",
+    "start": "echo \"No local Express server; use Vercel or run scripts/run-send-email-server.js for testing.\" && exit 0",
     "test:send-email": "node scripts/test-send-email.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
