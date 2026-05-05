@@ -135,3 +135,28 @@ curl -s -X POST -d "name=undefined&email=undefined&message=undefined" http://loc
 - CI tests: there is a GitHub Actions workflow at `.github/workflows/contact-form-tests.yml` which runs on pull requests touching `contactPage/**`. It starts the server in `TEST_MODE`, performs the two curl checks above, collects server logs, and fails the job if the responses are unexpected.
 
 If you need to accept `multipart/form-data` (file uploads), consider adding `multer` on the server side and adding tests for that behavior as well.
+
+## EmailJS & Vercel deployment notes
+
+This repo now uses EmailJS for sending contact messages from the Vercel serverless function at `api/send-email.js`.
+
+Required environment variables in Vercel (Project Settings -> Environment Variables):
+
+- `EMAILJS_SERVICE_ID` — your EmailJS service id
+- `EMAILJS_TEMPLATE_ID` — your EmailJS template id
+- `EMAILJS_USER_ID` or `EMAILJS_PUBLIC_KEY` — your EmailJS user/public key
+- `TEST_MODE` — optional; set to `true` to prevent real sends and log payloads (useful for CI)
+
+Quick deploy checklist:
+
+1. Push branch and open a PR — CI will run tests in `TEST_MODE`.
+2. In Vercel, add the environment variables above for the appropriate environment (Preview/Production).
+3. Deploy and test the contact form in a preview deployment.
+
+Local testing helper:
+
+I added a helper script `scripts/test-send-email.js` which POSTS a sample payload to a local or deployed `/api/send-email` endpoint. Run it with `node scripts/test-send-email.js <url>` (defaults to `http://localhost:3000/api/send-email`).
+
+Cleaning up SendGrid references:
+
+If you previously added SendGrid-related environment variables or documentation, you can remove those now. The `@sendgrid/mail` dependency was removed from `package.json` when switching to EmailJS.
