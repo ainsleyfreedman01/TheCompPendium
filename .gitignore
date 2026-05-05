@@ -1,5 +1,5 @@
 # Ignore the encrypted server.js file
-server.js.gpg
+# (removed server.js.gpg from repo; keep placeholder comment)
 
 # Ignore .env file for environment variables
 .env
