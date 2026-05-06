@@ -6,3 +6,5 @@
 
 # Ignore the public key file (if necessary)
 public-key.asc
+.vercel
+.env*.local

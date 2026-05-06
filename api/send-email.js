@@ -16,6 +16,16 @@ function isSpammyMessage(msg) {
   return false;
 }
 
+function normalizeMessage(msg = '') {
+  const letters = msg.replace(/[^A-Za-z]/g, '');
+  const up = (letters.match(/[A-Z]/g) || []).length;
+  if (letters.length > 0 && up / letters.length > 0.6) {
+    msg = msg.toLowerCase();
+    msg = msg.charAt(0).toUpperCase() + msg.slice(1);
+  }
+  return msg.replace(/\s{2,}/g, ' ').trim();
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
@@ -26,6 +36,9 @@ module.exports = async (req, res) => {
   }
 
   const { name, email, message, honeypot } = body;
+
+  // Normalize message early so spam heuristics operate on the sanitized text
+  const safeMessageEarly = normalizeMessage(message);
 
   // Debug endpoint: when DEBUG_EMAILJS=true and the client posts { debug: true }
   // return which env vars are present (masked) so we can verify runtime config.
@@ -52,7 +65,7 @@ module.exports = async (req, res) => {
     return res.status(400).send('Missing required fields');
   }
 
-  if (isSpammyMessage(message)) {
+  if (isSpammyMessage(safeMessageEarly)) {
     console.log('Content filtered as spam, routing to reject:', body);
     return res.status(400).send('Missing required fields');
   }
@@ -67,6 +80,7 @@ module.exports = async (req, res) => {
     return res.status(500).send('Email provider not configured');
   }
 
+  const safeMessage = safeMessageEarly;
   const emailPayload = {
     service_id: serviceId,
     template_id: templateId,
@@ -75,7 +89,7 @@ module.exports = async (req, res) => {
       from_name: name,
       from_email: email,
       email: email,
-      message: message,
+      message: safeMessage,
     },
   };
 
@@ -91,11 +105,10 @@ module.exports = async (req, res) => {
 
   try {
     const headers = { 'Content-Type': 'application/json' };
-    if (process.env.EMAILJS_PRIVATE_KEY) {
-      headers['Authorization'] = `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`;
-    }
+    const usedPrivateKey = !!process.env.EMAILJS_PRIVATE_KEY;
+    if (usedPrivateKey) headers['Authorization'] = `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`;
 
-    const resp = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
+    let resp = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers,
       body: JSON.stringify(emailPayload),
@@ -104,6 +117,21 @@ module.exports = async (req, res) => {
     if (!resp || !resp.ok) {
       const text = resp ? await resp.text().catch(() => '') : '';
       console.error('EmailJS error', resp && resp.status, text);
+
+      // If we attempted a server/private-key send and were rejected, retry once without Authorization
+      if (usedPrivateKey) {
+        console.log('Private-key send failed; retrying without Authorization to attempt public flow');
+        const publicHeaders = { 'Content-Type': 'application/json' };
+        const retry = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
+          method: 'POST',
+          headers: publicHeaders,
+          body: JSON.stringify(emailPayload),
+        });
+        if (retry && retry.ok) return res.status(200).send('Message has been sent successfully.');
+        const retryText = retry ? await retry.text().catch(() => '') : '';
+        console.error('EmailJS retry (no auth) failed', retry && retry.status, retryText);
+      }
+
       if (process.env.DEBUG_EMAILJS === 'true') {
         const statusCode = resp && resp.status ? resp.status : 500;
         return res.status(statusCode).send(text || 'EmailJS error');
