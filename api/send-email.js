@@ -97,35 +97,45 @@ module.exports = async (req, res) => {
     console.log('TEST_MODE - EmailJS payload:', emailPayload);
     return res.status(200).send('Message has been sent successfully. (test mode)');
   }
-
-  const doFetch = (...args) => {
-    if (typeof global.fetch === 'function') return global.fetch(...args);
-    return import('node-fetch').then(m => m.default(...args));
-  };
+  // Use node-fetch directly for predictable server behavior
+  const fetch = require('node-fetch');
 
   try {
-    const headers = { 'Content-Type': 'application/json' };
-    const usedPrivateKey = !!process.env.EMAILJS_PRIVATE_KEY;
+    // Prefer public (no Authorization) flow by default. Only use private/server key
+    // when `FORCE_PRIVATE_EMAILJS` is explicitly set to 'true'. This avoids provider
+    // 403s when server keys are present in config but not enabled for the account.
+    const usedPrivateKey = !!process.env.EMAILJS_PRIVATE_KEY && process.env.FORCE_PRIVATE_EMAILJS === 'true';
+
+    // If private key is present, include accessToken in the payload and Authorization header
+    const payload = Object.assign({}, emailPayload);
+    if (usedPrivateKey) payload.accessToken = process.env.EMAILJS_PRIVATE_KEY;
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    };
     if (usedPrivateKey) headers['Authorization'] = `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`;
 
-    let resp = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
+    let resp = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
       headers,
-      body: JSON.stringify(emailPayload),
+      body: JSON.stringify(payload),
     });
 
     if (!resp || !resp.ok) {
       const text = resp ? await resp.text().catch(() => '') : '';
       console.error('EmailJS error', resp && resp.status, text);
 
-      // If we attempted a server/private-key send and were rejected, retry once without Authorization
+      // If server/private-key send was attempted and rejected, retry once with public flow
       if (usedPrivateKey) {
         console.log('Private-key send failed; retrying without Authorization to attempt public flow');
-        const publicHeaders = { 'Content-Type': 'application/json' };
-        const retry = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
+        const publicHeaders = { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' };
+        // strip accessToken for public retry
+        const publicPayload = Object.assign({}, emailPayload);
+        const retry = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
           method: 'POST',
           headers: publicHeaders,
-          body: JSON.stringify(emailPayload),
+          body: JSON.stringify(publicPayload),
         });
         if (retry && retry.ok) return res.status(200).send('Message has been sent successfully.');
         const retryText = retry ? await retry.text().catch(() => '') : '';
@@ -134,11 +144,22 @@ module.exports = async (req, res) => {
 
       if (process.env.DEBUG_EMAILJS === 'true') {
         const statusCode = resp && resp.status ? resp.status : 500;
-        return res.status(statusCode).send(text || 'EmailJS error');
+        // try to parse json for better debug output
+        try {
+          const j = JSON.parse(text || '{}');
+          return res.status(statusCode).json(j);
+        } catch (e) {
+          return res.status(statusCode).send(text || 'EmailJS error');
+        }
       }
       return res.status(500).send('Error sending email');
     }
 
+    // Success: try to return provider JSON body when available
+    try {
+      const data = await resp.json().catch(() => null);
+      if (data) return res.status(200).json(data);
+    } catch (e) { /* ignore */ }
     return res.status(200).send('Message has been sent successfully.');
   } catch (err) {
     console.error('EmailJS send error', err);
