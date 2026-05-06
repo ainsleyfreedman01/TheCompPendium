@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/mainPage/index.html" },
+    { "source": "/about", "destination": "/aboutPage/index.html" },
+    { "source": "/contact", "destination": "/contactPage/index.html" },
+    { "source": "/mainPage", "destination": "/mainPage/index.html" },
+    { "source": "/blog-posts/:path*", "destination": "/blog-posts/:path*" }
+  ],
+  "cleanUrls": true
+}
