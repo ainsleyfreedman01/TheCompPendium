@@ -27,6 +27,21 @@ module.exports = async (req, res) => {
 
   const { name, email, message, honeypot } = body;
 
+  // Debug endpoint: when DEBUG_EMAILJS=true and the client posts { debug: true }
+  // return which env vars are present (masked) so we can verify runtime config.
+  if (process.env.DEBUG_EMAILJS === 'true' && body && body.debug === true) {
+    const mask = v => (v ? (v.length > 6 ? `${v.slice(0,3)}...${v.slice(-3)}` : '***') : null);
+    const diag = {
+      serviceIdSet: !!process.env.EMAILJS_SERVICE_ID,
+      templateIdSet: !!process.env.EMAILJS_TEMPLATE_ID,
+      userIdSet: !!(process.env.EMAILJS_USER_ID || process.env.EMAILJS_PUBLIC_KEY),
+      privateKeySet: !!process.env.EMAILJS_PRIVATE_KEY,
+      privateKeyPreview: mask(process.env.EMAILJS_PRIVATE_KEY),
+    };
+    res.setHeader('Content-Type', 'application/json');
+    return res.status(200).send(JSON.stringify(diag));
+  }
+
   if (honeypot && honeypot.trim() !== '') {
     console.log('Honeypot triggered - rejecting submission from', req.headers['x-forwarded-for'] || req.socket.remoteAddress, 'payload:', body);
     return res.status(400).send('Missing required fields');
