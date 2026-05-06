@@ -74,6 +74,7 @@ module.exports = async (req, res) => {
     template_params: {
       from_name: name,
       from_email: email,
+      email: email,
       message: message,
     },
   };
