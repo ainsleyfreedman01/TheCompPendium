@@ -87,12 +87,19 @@ module.exports = async (req, res) => {
     if (!resp || !resp.ok) {
       const text = resp ? await resp.text().catch(() => '') : '';
       console.error('EmailJS error', resp && resp.status, text);
+      if (process.env.DEBUG_EMAILJS === 'true') {
+        const statusCode = resp && resp.status ? resp.status : 500;
+        return res.status(statusCode).send(text || 'EmailJS error');
+      }
       return res.status(500).send('Error sending email');
     }
 
     return res.status(200).send('Message has been sent successfully.');
   } catch (err) {
     console.error('EmailJS send error', err);
+    if (process.env.DEBUG_EMAILJS === 'true') {
+      return res.status(500).send(String(err.stack || err.message || err));
+    }
     return res.status(500).send('Error sending email');
   }
 };
