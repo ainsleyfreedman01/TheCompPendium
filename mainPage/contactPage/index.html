@@ -79,7 +79,9 @@
                 <button type="submit">Send Feedback</button>
             </form>
 
-            <p id="successMessage">Email sent successfully!</p>
+            <p id="formMessage" style="display:none; font-weight:600; padding:0.75rem; border-radius:0.5rem;
+               margin-top:1rem;
+            "></p>
         </div>
     </div>
 
@@ -118,11 +120,21 @@
                     body: JSON.stringify(payload)
                 });
                 const text = await res.text();
+                const msgEl = document.getElementById('formMessage');
                 if (res.ok && text.includes('Message has been sent')) {
                     this.reset();
-                    document.getElementById('successMessage').style.display = 'block';
+                    msgEl.style.display = 'block';
+                    msgEl.style.background = 'linear-gradient(135deg,#d1fae5,#ecfdf5)';
+                    msgEl.style.border = '1px solid #10b981';
+                    msgEl.style.color = '#064e3b';
+                    msgEl.textContent = 'Email sent successfully!';
                 } else {
                     console.error('Failed to send email', res.status, text);
+                    msgEl.style.display = 'block';
+                    msgEl.style.background = 'linear-gradient(135deg,#fee2e2,#fff1f2)';
+                    msgEl.style.border = '1px solid #ef4444';
+                    msgEl.style.color = '#7f1d1d';
+                    msgEl.textContent = 'Failed to send message. Please try again later.';
                 }
             } catch (err) {
                 console.error('Network error sending contact form', err);
