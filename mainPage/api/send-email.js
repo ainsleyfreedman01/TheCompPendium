@@ -73,9 +73,14 @@ module.exports = async (req, res) => {
   };
 
   try {
+    const headers = { 'Content-Type': 'application/json' };
+    if (process.env.EMAILJS_PRIVATE_KEY) {
+      headers['Authorization'] = `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`;
+    }
+
     const resp = await doFetch('https://api.emailjs.com/api/v1.0/email/send', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify(emailPayload),
     });
 
