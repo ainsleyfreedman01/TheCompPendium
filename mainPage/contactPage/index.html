@@ -10,6 +10,7 @@
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="icon" href="/images/logoOfficial.png" type="image/png">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         #successMessage {
             display: none;
@@ -76,6 +77,8 @@
                 <label for="message">Message:</label>
                 <textarea name="message" rows="5" required></textarea>
 
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAAEvhGaEfvGUSrL9R"></div>
+
                 <button type="submit">Send Feedback</button>
             </form>
 
@@ -105,12 +108,24 @@
             // Use browser validation before sending
             if (!this.checkValidity()) { this.reportValidity(); return; }
 
+            const turnstileToken = typeof turnstile !== 'undefined' ? turnstile.getResponse() : '';
+            if (!turnstileToken) {
+                const msgEl = document.getElementById('formMessage');
+                msgEl.style.display = 'block';
+                msgEl.style.background = 'linear-gradient(135deg,#fee2e2,#fff1f2)';
+                msgEl.style.border = '1px solid #ef4444';
+                msgEl.style.color = '#7f1d1d';
+                msgEl.textContent = 'Please complete the verification challenge.';
+                return;
+            }
+
             const form = new FormData(this);
             const payload = {
                 name: form.get('name'),
                 email: form.get('email'),
                 message: form.get('message'),
-                honeypot: form.get('honeypot') || ''
+                honeypot: form.get('honeypot') || '',
+                turnstileToken
             };
 
             try {
@@ -123,6 +138,7 @@
                 const msgEl = document.getElementById('formMessage');
                 if (res.ok && text.includes('Message has been sent')) {
                     this.reset();
+                    if (typeof turnstile !== 'undefined') turnstile.reset();
                     msgEl.style.display = 'block';
                     msgEl.style.background = 'linear-gradient(135deg,#d1fae5,#ecfdf5)';
                     msgEl.style.border = '1px solid #10b981';
@@ -130,6 +146,7 @@
                     msgEl.textContent = 'Email sent successfully!';
                 } else {
                     console.error('Failed to send email', res.status, text);
+                    if (typeof turnstile !== 'undefined') turnstile.reset();
                     msgEl.style.display = 'block';
                     msgEl.style.background = 'linear-gradient(135deg,#fee2e2,#fff1f2)';
                     msgEl.style.border = '1px solid #ef4444';

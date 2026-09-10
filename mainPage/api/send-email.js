@@ -6,14 +6,52 @@ function isMissing(v) {
 
 function isSpammyMessage(msg) {
   if (!msg) return true;
+
   const urlRegex = /https?:\/\/\S+/gi;
   const urls = msg.match(urlRegex) || [];
   if (urls.length > 1) return true; // too many links
 
-  const spamPhrases = /(buy now|free money|work from home|click here|visit (my )?site|cheap pills|viagra|subscribe)/i;
-  if (spamPhrases.test(msg)) return true;
+  // Hard-block phrases that are almost never legitimate feedback
+  const hardSpamPhrases = /(buy now|free money|work from home|click here|visit (my )?site|cheap pills|viagra|casino|crypto invest)/i;
+  if (hardSpamPhrases.test(msg)) return true;
 
   if ((msg.match(/[A-Z]/g) || []).length / Math.max(1, msg.length) > 0.6) return true;
+
+  // Weighted scoring: covers both product-pitch spam ("50% OFF ... FREE Shipping")
+  // and cold-outreach service pitches (SEO, web design, marketing agencies, etc.)
+  // "strong" signals are specific enough to real spam that one match is enough;
+  // "weak" signals could plausibly appear in genuine feedback, so several must combine.
+  const strongSignals = [
+    /\d{1,3}%\s*off/i,
+    /free shipping/i,
+    /today only|limited time|act now|don'?t miss out/i,
+    /lifetime warranty|money[- ]back guarantee/i,
+    /get yours (today|now)/i,
+    /(boost|increase|improve|grow|drive) (more )?(your )?(sales|traffic|leads|rankings?|conversions?|revenue|visibility)/i,
+    /\b(seo|search engine optimi[sz]ation|backlinks?|guest post(ing)?|link building|google ranking|page ?1 of google)\b/i,
+    /\b(digital marketing|social media marketing|email marketing|lead generation|ppc|google ads|facebook ads)\b/i,
+    /\b(web design(er)?|website (design|development|redesign)|app development|mobile app) services?\b/i,
+    /(we|our (team|agency|company)) (specializ|offer|provide|help (businesses|companies|clients))/i,
+    /\bfree (audit|consultation|quote|proposal|trial|analysis)\b/i,
+    /promo ?code|discount code|coupon/i,
+    /(book|schedule) a (call|demo|meeting)/i,
+    /\bwe (recently )?(reviewed|analyzed|audited) your (website|site)\b/i,
+  ];
+
+  const weakSignals = [
+    /\bhey\b.{0,20}\b(i|we)\s*(wanted|just wanted)\s*to\s*(reach out|let you know|introduce)/i,
+    /i (came across|noticed|found|was looking at) your (website|site|business|page)/i,
+    /(best|warm|kind) (wishes|regards),?\s*$/im, // sales-template sign-off
+    /unsubscribe/i,
+    /order now|shop now|check (it |this )?out now/i,
+    /(let me know|reply|get back to (you|me)) if (you'?re|you are) interested/i,
+  ];
+
+  if (strongSignals.some((pattern) => pattern.test(msg))) return true;
+
+  const weakScore = weakSignals.reduce((count, pattern) => count + (pattern.test(msg) ? 1 : 0), 0);
+  if (weakScore >= 3) return true;
+
   return false;
 }
 
@@ -27,6 +65,30 @@ function normalizeMessage(msg = '') {
   return msg.replace(/\s{2,}/g, ' ').trim();
 }
 
+async function verifyTurnstile(token, remoteip) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // not configured; skip verification
+  if (!token) return false;
+
+  const fetch = require('node-fetch');
+  const params = new URLSearchParams();
+  params.append('secret', secret);
+  params.append('response', token);
+  if (remoteip) params.append('remoteip', remoteip);
+
+  try {
+    const resp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: params,
+    });
+    const data = await resp.json();
+    return !!data.success;
+  } catch (err) {
+    console.error('Turnstile verification error', err);
+    return false;
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
@@ -35,7 +97,7 @@ module.exports = async (req, res) => {
     try { body = JSON.parse(req.rawBody || '{}'); } catch (e) { body = {}; }
   }
 
-  const { name, email, message, honeypot } = body;
+  const { name, email, message, honeypot, turnstileToken } = body;
 
   // Normalize message early so spam heuristics operate on the sanitized text
   const safeMessageEarly = normalizeMessage(message);
@@ -56,6 +118,13 @@ module.exports = async (req, res) => {
   if (honeypot && honeypot.trim() !== '') {
     console.log('Honeypot triggered - rejecting submission from', req.headers['x-forwarded-for'] || req.socket.remoteAddress, 'payload:', body);
     return res.status(400).send('Missing required fields');
+  }
+
+  const remoteip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const turnstileOk = await verifyTurnstile(turnstileToken, remoteip);
+  if (!turnstileOk) {
+    console.log('Turnstile verification failed - rejecting submission from', remoteip);
+    return res.status(400).send('Failed verification challenge');
   }
 
   if (isMissing(name) || isMissing(email) || isMissing(message)) {
