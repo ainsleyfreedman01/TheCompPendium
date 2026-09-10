@@ -407,8 +407,6 @@ footer ul li a:hover {
 
 .feedback-form .cf-turnstile {
     margin: 0.5rem 0 1.5rem;
-    display: flex;
-    justify-content: center;
 }
 
 .feedback-form button[type="submit"] {
