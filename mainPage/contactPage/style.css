@@ -405,6 +405,12 @@ footer ul li a:hover {
     resize: vertical;
 }
 
+.feedback-form .cf-turnstile {
+    margin: 0.5rem 0 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
 .feedback-form button[type="submit"] {
     width: 100%;
     padding: 1rem 2rem;
